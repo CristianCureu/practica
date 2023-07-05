@@ -5,6 +5,7 @@ const promises_1 = require("fs/promises");
 const Koa = require("koa");
 const serve = require("koa-static");
 const router_1 = require("./src/router");
+const cors = require("@koa/cors");
 process.env["PORT"] = process.env["PORT"] || "80";
 process.chdir(__dirname);
 // create folder upload if not exists
@@ -14,7 +15,8 @@ process.chdir(__dirname);
 })();
 const app = new Koa({ proxy: true });
 app
-    .use(serve(`../app`))
+    .use(cors())
+    .use(serve(`../frontend/build`))
     .use(serve(`../upload`))
     .use(router_1.router.routes())
     .use(router_1.router.allowedMethods())
