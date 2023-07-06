@@ -1,35 +1,32 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import Button from "../components/Button";
 
 
  const RegisterPage = ()=>{
-    user= {
+
+    const [user, setUserData] = useState({
         name: "",
         email: "",
-        password: "",
-        check_password: "",
-        error: ""
-    };
-    const [user,setUserData ] = useState("");
-    
-    const [name,setName ] = useState("");
-    const [email,setEmail ] = useState("");
-    const [password,setPassword ] = useState("");
-    const [check_password,setCheckPassword ] = useState("");
+        password: ""
+      });
+
     const [error,setError ] = useState("");
 
     const handleRegister= async (e) =>{
 
         e.preventDefault();
+        console.log(user);
+
         try{
             const response= await fetch(process.env.REACT_APP_URL+ "register/api",{
                 method:"POST",
                 headers:{
                     "Content-Typr":"application/json",
                 },
-                body: JSON.stringify({name, email, password})
+                body: JSON.stringify(user)
             }) 
             console.log(response.text);
+
             if(response.status===200){
                 console.log("succes")
             }
@@ -54,7 +51,7 @@ import Button from "../components/Button";
             placeholder="Name " 
             required 
             autoComplete="off"
-            onChange={(e)=>setName(e.target.value)} />
+            onChange={(e)=>setUserData({...user,name:e.target.value})} />
     
 
             <input 
@@ -64,7 +61,7 @@ import Button from "../components/Button";
                 placeholder="Email" 
                 required 
                 autoComplete="off"
-                onChange={(e)=>setEmail(e.target.value)} />
+                onChange={(e)=>setUserData({...user,email:e.target.value})} />
 
             <input 
                 type="password" 
@@ -73,7 +70,7 @@ import Button from "../components/Button";
                 placeholder="Password " 
                 required 
                 autoComplete="off"
-                onChange={(e)=>setName(e.target.value)} />
+                onChange={(e)=>setUserData({...user,password:e.target.value})} />
 
             <input 
                 type="password" 
@@ -82,7 +79,7 @@ import Button from "../components/Button";
                 placeholder="Password again" 
                 required 
                 autoComplete="off"
-                onChange={(e)=>setPassword(e.target.value)} />
+        />
             
         </form>
         <Button text="Înregistrare !@#!@#%" onClick={handleRegister}></Button>
