@@ -2,7 +2,7 @@ const Button = ({
   text,
   onClick,
   bgColor = "bg-sky-600",
-  hoverBgColor = "hover:bg-sky-700",
+  hoverBgColor = "hover:bg-red-700",
   color = "text-white",
 }) => {
   return (

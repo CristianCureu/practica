@@ -2,7 +2,6 @@ import { useState } from "react";
 import Button from "../components/Button";
 import { Link } from "react-router-dom";
 
-const BASE_URL= "http://localhost/login/api"
  const LoginPage = ()=>{
 
     const [email,setEmail ] = useState("");
@@ -12,8 +11,9 @@ const BASE_URL= "http://localhost/login/api"
     const handleSubmit= async (e) =>{
 
         e.preventDefault();
+        
         try{
-            const response= await fetch(`${BASE_URL}/loginUser`,{
+            const response= await fetch(process.env.REACT_APP_URL+ "login/api",{
                 method:"POST",
                 headers:{
                     "Content-Typr":"application/json",
@@ -58,12 +58,12 @@ const BASE_URL= "http://localhost/login/api"
             
             <Button text="Login" onClick={handleSubmit}></Button>
             
-            <div> "Contless"? <Link to="/register">Înregistrare.</Link></div>
+            <div> "Contless"? <Link  className="text-red-500" to="/register"> <p>Înregistrare.</p></Link></div>
        </form>
        {error && <div className="text-red-600"> {error}</div>}
         
     </div>
     
-}
+} 
 
 export default LoginPage;
