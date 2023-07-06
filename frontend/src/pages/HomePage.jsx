@@ -1,11 +1,14 @@
-import Navbar from '../components/Navbar';
-import Scanner from '../components/Scanner';
+import { Link } from "react-router-dom";
+import LoginPage from "./LoginPage";
+import Scanner from "../components/Scanner";
 
-export default function HomePage() {
+const HomePage = () => {
   return (
     <div>
-      <Navbar />
+      <Link to="/dosar-transport">Navigheaza la dosar transport</Link>
       <Scanner />
     </div>
   );
 };
+
+export default HomePage;

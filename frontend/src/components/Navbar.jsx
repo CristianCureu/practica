@@ -1,12 +1,16 @@
 import { Fragment } from 'react'
-import { Disclosure, Menu, Transition } from '@headlessui/react'
+import { Disclosure, Menu, Transition } from '@headlessui/react' 
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Link } from 'react-router-dom'
+import Button from './Button'
 
 const navigation = [
+    
     { name: 'Home', href: '/' },
     { name: 'Dosar Transport', href: '/dosar-transport' },
     { name: 'Facturi', href: '#' },
     { name: 'Colete', href: '#' },
+    
 ]
 
 function classNames(...classes) {
@@ -63,13 +67,17 @@ export default function Navbar() {
                                 </div>
                             </div>
                             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                                <button
-                                    type="button"
-                                    className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                                >
-                                    <span className="sr-only">View notifications</span>
-                                    <BellIcon className="h-6 w-6" aria-hidden="true" />
-                                </button>
+                                
+                            
+
+                            <Link to={'/login'}>
+                                    <Button text='Login'>
+
+                                    </Button>
+                            </Link>
+
+                          
+
 
                                 {/* Profile dropdown */}
                                 <Menu as="div" className="relative ml-3">

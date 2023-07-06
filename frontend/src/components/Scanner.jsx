@@ -12,7 +12,7 @@ const Scanner = () => {
 
   const { ref } = useZxing({
     paused: isPaused,
-    timeBetweenDecodingAttempts: 300,
+    timeBetweenDecodingAttempts: 3000,
     onResult(result) {
       setResult(result.getText());
       setResults((prevState) => [...prevState, result]);

@@ -1,8 +1,8 @@
 const Button = ({
   text,
   onClick,
-  bgColor = "bg-sky-600",
-  hoverBgColor = "hover:bg-sky-700",
+  bgColor = "bg-indigo-600",
+  hoverBgColor = "hover:bg-indigo-500",
   color = "text-white",
 }) => {
   return (
