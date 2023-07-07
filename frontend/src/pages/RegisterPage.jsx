@@ -59,7 +59,7 @@ const RegisterPage = () => {
           className=" lg:w-3/4  border-gray-400 border-2 text-gray-900 outline-none text-sm rounded-md p-3 focus:border-sky-500"
           type="password"
           placeholder="Password"
-          required
+          requiredßå
           autoComplete="off"
           onChange={(e) => setUserData({...userData, password: e.target.value})}
         />
