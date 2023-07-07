@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="App">
       <Router>
-      <Navbar/>
+        <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/dosar-transport" element={<DosarTransportPage />} />
