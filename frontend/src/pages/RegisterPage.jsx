@@ -2,14 +2,11 @@ import { useState } from "react";
 import Button from "../components/Button";
  
 const RegisterPage = () => {
-  
-    const [userData, setUserData] = useState({
-    name: '', 
-    email: '', 
-    password: '', 
-    passwordRepeat: ''});
-  
-    const [error, setError] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordRepeat, setPasswordRepeat] = useState("");
+  const [error, setError] = useState("");
  
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,7 +18,7 @@ const RegisterPage = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(userData),
+          body: JSON.stringify({ name, email, password, passwordRepeat }),
         }
       );
       const resposneText = await response.text();
@@ -45,7 +42,7 @@ const RegisterPage = () => {
           placeholder="Name"
           required
           autoComplete="off"
-          onChange={(e) => setUserData({...userData, name: e.target.value})}
+          onChange={(e) => setName(e.target.value)}
         />
         <input
           className=" lg:w-3/4  border-gray-400 border-2 text-gray-900 outline-none text-sm rounded-md p-3 focus:border-sky-500"
@@ -53,15 +50,15 @@ const RegisterPage = () => {
           placeholder="Email"
           required
           autoComplete="off"
-          onChange={(e) => setUserData({...userData, email: e.target.value})}
+          onChange={(e) => setEmail(e.target.value)}
         />
         <input
           className=" lg:w-3/4  border-gray-400 border-2 text-gray-900 outline-none text-sm rounded-md p-3 focus:border-sky-500"
           type="password"
           placeholder="Password"
-          requiredßå
+          required
           autoComplete="off"
-          onChange={(e) => setUserData({...userData, password: e.target.value})}
+          onChange={(e) => setPassword(e.target.value)}
         />
         <input
           className=" lg:w-3/4  border-gray-400 border-2 text-gray-900 outline-none text-sm rounded-md p-3 focus:border-sky-500"
@@ -69,7 +66,7 @@ const RegisterPage = () => {
           placeholder="Confirm password"
           required
           autoComplete="off"
-          onChange={(e) => setUserData({...userData, passwordRepeat: e.target.value})}
+          onChange={(e) => setPasswordRepeat(e.target.value)}
         />
         <Button text="register" onClick={handleSubmit} />
         {error ? <div className="text-red-600">{error}</div> : null}
