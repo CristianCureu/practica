@@ -6,4 +6,4 @@ export default function HomePage() {
       <Scanner />
     </div>
   );
-};
+}
