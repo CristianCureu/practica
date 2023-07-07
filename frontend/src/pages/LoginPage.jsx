@@ -19,18 +19,18 @@ import { Link } from "react-router-dom";
                     "Content-Typr":"application/json",
                 },
                 body: JSON.stringify({email, password})
-            }) 
-            console.log(response.text);
+            })
+            const responseText = await response.text()
+            console.log(responseText);
             if(response.status===200){
                 console.log("succes")
             }
             else{
-                setError(response.text);
+                setError(responseText);
             }
             
 
         }catch(error){
-            setError("Err");
             console.log(error);
         }
     }

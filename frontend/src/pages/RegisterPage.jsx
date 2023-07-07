@@ -25,18 +25,17 @@ import Button from "../components/Button";
                 },
                 body: JSON.stringify(user)
             }) 
-            console.log(response.text);
+            const responseText = await response.text()
+            console.log(responseText);
 
             if(response.status===200){
                 console.log("succes")
             }
             else{
-                setError(response.text);
-            }
-            
+                setError(responseText);
+            }            
 
         }catch(error){
-            setError("Err");
             console.log(error);
         }
     }
@@ -80,10 +79,10 @@ import Button from "../components/Button";
                 required 
                 autoComplete="off"
         />
-            
+            <Button text="Înregistrare !@#!@#%" onClick={handleRegister}></Button>
         </form>
-        <Button text="Înregistrare !@#!@#%" onClick={handleRegister}></Button>
-        
+     
+        {error && <div className="text-red-600"> {error}</div>}
     </div>
     
 } 
