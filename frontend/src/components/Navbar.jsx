@@ -2,12 +2,14 @@ import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import  Button from "./Button"
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+
 const navigation = [
     { name: 'Home', href: '/' },
     { name: 'Dosar Transport', href: '/dosar-transport' },
     { name: 'Facturi', href: '#' },
     { name: 'Colete', href: '#' },
+    { name: 'Users', href: '/users' },
 ]
 
 function classNames(...classes) {
@@ -15,6 +17,8 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
+    const location=useLocation();
+    console.log(location);
     return (
         <Disclosure as="nav" className="bg-gray-800">
             {({ open }) => (
@@ -65,10 +69,11 @@ export default function Navbar() {
                             </div>
                             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                        
-                            <Link to="/login">
+                            { location.pathname==="/login" ?null: <Link to="/login">
                                 <Button text="Login" bgColor='bg-purple-300'/>
                             </Link>
-                            
+                            }
+                             
                                 {/* Profile dropdown */}
                                 <Menu as="div" className="relative ml-3">
                                     <div>

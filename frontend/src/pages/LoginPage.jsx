@@ -1,11 +1,19 @@
 import { useState } from "react";
 import Button from "../components/Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Input from "../components/input";
 
  const LoginPage = ()=>{
+    const navigate=useNavigate();
+    const [userData,setUserData ] =  useState({
+        email: "",
+        password: ""
+    });
 
-    const [email,setEmail ] = useState("");
-    const [password,setPassword ] = useState("");
+    const setUserDataProxy = (field, value) => {
+        setUserData({...userData, [field]:value});
+    }
+
     const [error,setError ] = useState("");
 
     const handleSubmit= async (e) =>{
@@ -13,17 +21,18 @@ import { Link } from "react-router-dom";
         e.preventDefault();
         
         try{
-            const response= await fetch(process.env.REACT_APP_URL+ "/login",{
+            const response= await fetch(process.env.REACT_APP_URL+"/loginUser",{
                 method:"POST",
                 headers:{
-                    "Content-Typr":"application/json",
+                    "Content-Type":"application/json",
                 },
-                body: JSON.stringify({email, password})
+                body: JSON.stringify(userData)
             })
             const responseText = await response.text()
             console.log(responseText);
             if(response.status===200){
                 console.log("succes")
+                navigate("/")
             }
             else{
                 setError(responseText);
@@ -38,27 +47,21 @@ import { Link } from "react-router-dom";
     return <div className="grid place-items-center p-20">
         <form className="flex flex-col items-center justify-around bordered p-5 gap-5 marg shadow-md"  action="" method="post">
 
-            <input 
-            type="text" 
-            name="" 
-            id="credential_alias" 
-            placeholder="Email" 
-            required 
-            autoComplete="off"
-            onChange={(e)=> setEmail(e.target.value)}
-            />
-           
-            <input type="password" 
-            name="" 
-            id="credential_passcode" 
-            placeholder="Password" 
-            required autoComplete="off" 
-            onChange={(e)=> setPassword(e.target.value)}
-            />
+            <Input 
+            name="email"
+            placeholder="Email on my own input"
+            onChange={setUserDataProxy}
+            ></Input>
             
+           <Input 
+            name="password"
+            placeholder="Password on my own input"
+            onChange={setUserDataProxy}
+            ></Input>
+        
             <Button text="Login" onClick={handleSubmit}></Button>
             
-            <div> "Contless"? <Link  className="text-red-500" to="/register"> <p>Înregistrare.</p></Link></div>
+            <div> N-ai cont? <Link  className="text-red-500" to="/register"> Înregistrare.</Link></div>
        </form>
        {error && <div className="text-red-600"> {error}</div>}
         

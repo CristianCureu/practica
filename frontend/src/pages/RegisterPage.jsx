@@ -7,38 +7,35 @@ import Button from "../components/Button";
     const [user, setUserData] = useState({
         name: "",
         email: "",
-        password: ""
+        password: "",
+        passwordRepeat: "",
       });
-
-    const [error,setError ] = useState("");
-
-    const handleRegister= async (e) =>{
-
+      const [error, setError] = useState("");
+    
+      const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(user);
-
-        try{
-            const response= await fetch(process.env.REACT_APP_URL+ "/register",{
-                method:"POST",
-                headers:{
-                    "Content-Typr":"application/json",
-                },
-                body: JSON.stringify(user)
-            }) 
-            const responseText = await response.text()
-            console.log(responseText);
-
-            if(response.status===200){
-                console.log("succes")
+        try {
+          const response = await fetch( process.env.REACT_APP_URL+"/registerUser",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(user),
             }
-            else{
-                setError(responseText);
-            }            
-
-        }catch(error){
-            console.log(error);
+          );
+          const resposneText = await response.text();
+          console.log(response);
+          if (response.status === 201) {
+            console.log("success");
+          } else {
+            setError(resposneText);
+          }
+        } catch (error) {
+          console.log("RegisterPage::handleSubmit::", error.message);
         }
-    }
+      };
+    
     
     return <div className="grid place-items-center p-20">
     
@@ -78,8 +75,9 @@ import Button from "../components/Button";
                 placeholder="Password again" 
                 required 
                 autoComplete="off"
-        />
-            <Button text="Înregistrare !@#!@#%" onClick={handleRegister}></Button>
+                onChange={(e)=>setUserData({...user,passwordRepeat:e.target.value})} />
+        
+            <Button text="Înregistrare !@#!@#%" onClick={handleSubmit}></Button>
         </form>
      
         {error && <div className="text-red-600"> {error}</div>}
