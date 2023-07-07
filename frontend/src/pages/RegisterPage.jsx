@@ -21,12 +21,12 @@ const RegisterPage = () => {
           body: JSON.stringify({ name, email, password, passwordRepeat }),
         }
       );
-      const resposneText = await response.text();
+      const responseText = await response.text();
       console.log(response);
       if (response.status === 201) {
         console.log("success");
       } else {
-        setError(resposneText);
+        setError(responseText);
       }
     } catch (error) {
       console.log("RegisterPage::handleSubmit::", error.message);
