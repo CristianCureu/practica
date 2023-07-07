@@ -1,12 +1,20 @@
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Button from "../components/Button";
 import { useState, useEffect } from "react";
+import input from "../components/Input";
+
  
 const BASE_URL = "http://localhost:80/api";
  
 const LoginPage = () => {
+  const navigate = useNavigate();
   const [userData, setUserData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
+
+  const onChange = (field, value) => {
+    setUserData({...userData, [field] : value});
+  };
   
  
   const handleSubmit = async (e) => {
@@ -22,6 +30,8 @@ const LoginPage = () => {
       const responseText = await response.text();
       if (response.status === 200) {
         console.log("success");
+        alert('Login result... navigare pe pagina HOME');
+        navigate('/home');
       } else {
         setError(responseText);
       }
