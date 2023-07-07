@@ -8,4 +8,4 @@ export default function DosarTransportPage() {
       </div>
     </div>
   );
-};
+}

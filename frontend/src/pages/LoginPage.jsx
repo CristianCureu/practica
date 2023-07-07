@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
         e.preventDefault();
         
         try{
-            const response= await fetch(process.env.REACT_APP_URL+ "login/api",{
+            const response= await fetch(process.env.REACT_APP_URL+ "/login",{
                 method:"POST",
                 headers:{
                     "Content-Typr":"application/json",

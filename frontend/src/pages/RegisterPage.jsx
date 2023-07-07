@@ -18,7 +18,7 @@ import Button from "../components/Button";
         console.log(user);
 
         try{
-            const response= await fetch(process.env.REACT_APP_URL+ "register/api",{
+            const response= await fetch(process.env.REACT_APP_URL+ "/register",{
                 method:"POST",
                 headers:{
                     "Content-Typr":"application/json",
