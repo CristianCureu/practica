@@ -1,25 +1,22 @@
 const Input = ({
-     className="",
-      type="text",
-      name="",
-      placeholder="",
-      required =true,
-      autoComplete="off",
-      onChange}) => {
-    
-    return (
-       <input 
-       className={className}
-       type={type}
-       name={name}
-       required ={required}
-       autoComplete={autoComplete}
-       placeholder={placeholder} 
-       onChange = {e => onChange(e.target.name,e.target.value)}
-       />
-    );
+  name,
+  type = "text",
+  placeholder,
+  required = true,
+  autoComplete = "off",
+  onChange,
+}) => {
+  return (
+    <input
+      className="border-gray-400 border-2 text-gray-900 outline-none text-sm rounded-md p-3 focus:border-sky-500"
+      name={name}
+      type={type}
+      placeholder={placeholder}
+      required={required}
+      autoComplete={autoComplete}
+      onChange={onChange}
+    />
+  );
+};
 
-  };
-  
-  export default Input;
-  
+export default Input;
