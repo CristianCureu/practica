@@ -10,10 +10,6 @@ const LoginPage = () => {
   const [userData, setUserData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
 
-  const onChange = (field, value) => {
-    setUserData({ ...userData, [field]: value });
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -27,8 +23,8 @@ const LoginPage = () => {
       const responseText = await response.text();
       if (response.status === 200) {
         console.log("success");
-        alert("Login reusit... navigare pe pagina HOME");
-        navigate("/");
+        alert('Login reusit...navigare pe pagina HOME');
+        navigate('/home');
       } else {
         setError(responseText);
       }
@@ -44,18 +40,27 @@ const LoginPage = () => {
   return (
     <div className="flex w-full justify-center p-4">
       <form className="flex flex-col items-center justify-around border w-3/4 h-96 px-2">
-        <Input
+        <input
+          className="border-gray-400 border-2 text-gray-900 outline-none text-sm rounded-md p-3 focus:border-sky-500"
+          type="text"
           placeholder="email"
-          name="email"
-          type="email"
-          onChange={(e) => onChange(e.target.name, e.target.value)}
+          required
+          autoComplete="off"
+          onChange={(e) => {
+            setUserData({ ...userData, email: e.target.value });
+          }}
         />
-        <Input
-          placeholder="password"
-          name="password"
+        <input
+          className="border-gray-400 border-2 text-gray-900 outline-none text-sm rounded-md p-3 focus:border-sky-500"
           type="password"
-          onChange={(e) => onChange(e.target.name, e.target.value)}
+          placeholder="password"
+          required
+          autoComplete="off"
+          onChange={(e) => {
+            setUserData({ ...userData, password: e.target.value });
+          }}
         />
+        {/* <Input name="ce vreau"/> */}
         <Button text="Login" onClick={handleSubmit} />
         <div className="flex text-lg">
           <p>Nu ai cont?</p>
