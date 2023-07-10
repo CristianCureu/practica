@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const Input = ({
   name,
   type = "text",
@@ -20,3 +21,15 @@ const Input = ({
 };
 
 export default Input;
+=======
+
+
+const Input = (props) =>{
+   
+return
+<div>{props.name}</div> 
+
+}
+
+export default Input
+>>>>>>> e8522ba2a04de4f6d2f20c0964cd7ed6221fc51d
