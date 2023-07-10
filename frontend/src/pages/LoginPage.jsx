@@ -23,6 +23,8 @@ const LoginPage = () => {
       const responseText = await response.text();
       if (response.status === 200) {
         console.log("success");
+        alert('Login reusit ...navigare pe pagina HOME');
+        navigate('/home');
       } else {
         setError(responseText);
       }
