@@ -4,7 +4,9 @@ import * as Koa from "koa";
 import { HttpMethodEnum, koaBody } from "koa-body";
 import { deleteEntity, query, saveEntity } from "./sql";
 import { deleteUploadedFile, download, preview, upload } from "./upload";
-import {
+import { getStatus } from "./model/status";
+import { putStatus } from "./model/status";
+import { decode, loginUser, logoutUser, passwordRecover, passwordReset, registerUser, validateToken } from "./user";
   decode,
   loginUser,
   passwordRecover,
@@ -37,6 +39,8 @@ const multipartBody = koaBody({
 const router = new Router({ prefix: "/api" });
 
 router
+  .get("/data/status", bodyParser, getStatus)
+  .put("/data/status", bodyParser, putStatus)
   .post("/loginUser", bodyParser, loginUser)
   .get("/logoutUser", logoutUser)
   .post("/registerUser", bodyParser, registerUser)
