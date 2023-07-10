@@ -1,10 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import { useState, useEffect } from "react";
-import input from "../components/input";
-//import Input from "../components/input";
- 
-import sql from "../services/SqlService";
 
 const BASE_URL = "http://localhost:80/api";
  
@@ -12,9 +8,7 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const [userData, setUserData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
-  useEffect(() => {
-    sql.query('test');
-  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -28,8 +22,6 @@ const LoginPage = () => {
       const responseText = await response.text();
       if (response.status === 200) {
         console.log("success");
-        alert('Login reusit... navigare pe pagina HOME');
-        navigate('/home');
       } else {
         setError(responseText);
       }
@@ -37,33 +29,20 @@ const LoginPage = () => {
       console.error(error);
     }
   };
- 
-  useEffect(() => {
-    console.log(userData);
-  }, [userData]);
- 
   return (
     <div className="flex w-full justify-center p-4">
       <form className="flex flex-col items-center justify-around border w-3/4 h-96 px-2">
-        <input
-          className="border-gray-400 border-2 text-gray-900 outline-none text-sm rounded-md p-3 focus:border-sky-500"
-          type="text"
+        <Input
           placeholder="email"
-          required
-          autoComplete="off"
-          onChange={(e) => {
-            setUserData({ ...userData, email: e.target.value });
-          }}
+          name="email"
+          type="email"
+          onChange={(e) => onChange(e.target.name, e.target.value)}
         />
-        <input
-          className="border-gray-400 border-2 text-gray-900 outline-none text-sm rounded-md p-3 focus:border-sky-500"
-          type="password"
+        <Input
           placeholder="password"
-          required
-          autoComplete="off"
-          onChange={(e) => {
-            setUserData({ ...userData, password: e.target.value });
-          }}
+          name="password"
+          type="password"
+          onChange={(e) => onChange(e.target.name, e.target.value)}
         />
         {/* <Input name="ce vreau"/> */}
         <Button text="Login" onClick={handleSubmit} />
