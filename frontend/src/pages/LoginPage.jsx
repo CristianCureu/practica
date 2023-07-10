@@ -2,7 +2,8 @@ import { Link, useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import { useState, useEffect } from "react";
 import React from "react";
-//import sql from "../services/SqlService";
+import sql from "../services/SqlService";
+import { Link } from "react-router-dom";
 
  
 const BASE_URL = "http://localhost:80/api";
