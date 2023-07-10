@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import Input from "../components/Input";
@@ -12,20 +12,13 @@ import Input from "../components/Input";
         password: ""
     });
 
-
-
     const setUserDataProxy = (field, value) => {
         setUserData({...userData, [field]:value});
     }
 
 
-
     const [error,setError ] = useState("");
-
-
-    
     const handleSubmit= async (e) =>{
-
         e.preventDefault();
         
         try{
@@ -37,7 +30,7 @@ import Input from "../components/Input";
                 body: JSON.stringify(userData)
             })
             const responseText = await response.text()
-            console.log(responseText);
+          
             if(response.status===200){
                 console.log("succes")
                 navigate("/")
@@ -51,6 +44,9 @@ import Input from "../components/Input";
             console.log(error);
         }
     }
+    useEffect(() => {
+        console.log(userData);
+    }, [userData]);
     
     return <div className="grid place-items-center p-20">
         <form className="flex flex-col items-center justify-around bordered p-5 gap-5 marg shadow-md"  action="" method="post">
@@ -58,13 +54,13 @@ import Input from "../components/Input";
         <Input 
             name="email"
             placeholder="Email on my own input"
-            onChange={setUserDataProxy}
+            onChange={(e) => setUserDataProxy(e.target.name, e.target.value)}
             ></Input>
             
            <Input 
             name="password"
             placeholder="Password on my own input"
-            onChange={setUserDataProxy}
+            onChange={(e) => setUserDataProxy(e.target.name, e.target.value)}
             ></Input>
         
             <Button text="Login" onClick={handleSubmit}></Button>
