@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Button from "../components/Button";
 import { Link, useNavigate } from "react-router-dom";
-import Input from "../components/input";
+import Button from "../components/Button";
+import Input from "../components/Input";
 
  const LoginPage = ()=>{
     const navigate=useNavigate();
@@ -21,7 +21,7 @@ import Input from "../components/input";
         e.preventDefault();
         
         try{
-            const response= await fetch(process.env.REACT_APP_URL+"/loginUser",{
+            const response= await fetch(`${process.env.REACT_APP_URL}`+"/loginUser",{
                 method:"POST",
                 headers:{
                     "Content-Type":"application/json",
@@ -47,7 +47,7 @@ import Input from "../components/input";
     return <div className="grid place-items-center p-20">
         <form className="flex flex-col items-center justify-around bordered p-5 gap-5 marg shadow-md"  action="" method="post">
 
-            <Input 
+        <Input 
             name="email"
             placeholder="Email on my own input"
             onChange={setUserDataProxy}

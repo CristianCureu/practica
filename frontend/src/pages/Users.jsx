@@ -2,12 +2,12 @@ import { useEffect, useState } from "react"
 
 
 const Users = () =>{
-    const [users,setUsers]=useState([]);
+   
 
     useEffect(()=>{
         const getUsers = async () => {
             try{
-            const users= await fetch(process.env.REACT_APP_URL+"/query",{
+            const users= await fetch(`${process.env.REACT_APP_URL}`+"/query",{
                 method:"POST",
                 headers:{
                     "Content-Type":"application/json",
@@ -17,8 +17,7 @@ const Users = () =>{
                 })
             })
             const usersJson = await users.json()
-            setUsers(usersJson)
-            console.log(users)
+            console.log(usersJson)
         }
             catch(err){
                console.log("Get users error:" + err);
