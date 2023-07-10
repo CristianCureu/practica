@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import { useState, useEffect } from "react";
+import Input from "../components/input";
 
 const BASE_URL = "http://localhost:80/api";
  
