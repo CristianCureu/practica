@@ -37,6 +37,8 @@ const multipartBody = koaBody({
 const router = new Router({ prefix: "/api" });
 
 router
+  .get("/data/status", getStatus)
+  .put("/data/status", bodyParser, putStatus)
   .post("/loginUser", bodyParser, loginUser)
   .get("/logoutUser", logoutUser)
   .post("/registerUser", bodyParser, registerUser)
