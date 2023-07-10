@@ -13,6 +13,8 @@ import {
   logoutUser,
   validateToken,
 } from "./user";
+import { getStatus } from "./model/status";
+import { putStatus } from "./model/status";
 
 const bodyParser = koaBody({
   jsonLimit: 50 * 1024 * 1025,

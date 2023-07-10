@@ -1,7 +1,11 @@
+import { useEffect } from "react";
 import Scanner from "../components/Scanner";
-import { Link } from "react-router-dom";
+import sql from "../services/SqlService";
 
-const HomePage = () => {
+export default function HomePage() {
+  useEffect(() => {
+    sql.query('test');
+  }, []);
   return (
     <div>
       <Link to="/dosar-transport">Navigheaza la dosar transport</Link>
@@ -9,5 +13,3 @@ const HomePage = () => {
     </div>
   );
 }
-
-export default HomePage;
