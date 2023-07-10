@@ -4,18 +4,26 @@ import Button from "../components/Button";
 import Input from "../components/Input";
 
  const LoginPage = ()=>{
+
     const navigate=useNavigate();
+
     const [userData,setUserData ] =  useState({
         email: "",
         password: ""
     });
 
+
+
     const setUserDataProxy = (field, value) => {
         setUserData({...userData, [field]:value});
     }
 
+
+
     const [error,setError ] = useState("");
 
+
+    
     const handleSubmit= async (e) =>{
 
         e.preventDefault();
