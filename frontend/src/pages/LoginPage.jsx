@@ -1,8 +1,7 @@
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import { useState, useEffect } from "react";
-import input from "../components/Input";
+import Input from "../components/Input";
 
  
 const BASE_URL = "http://localhost:80/api";
@@ -13,10 +12,9 @@ const LoginPage = () => {
   const [error, setError] = useState("");
 
   const onChange = (field, value) => {
-    setUserData({...userData, [field] : value});
+    setUserData({ ...userData, [field]: value });
   };
-  
- 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -30,8 +28,8 @@ const LoginPage = () => {
       const responseText = await response.text();
       if (response.status === 200) {
         console.log("success");
-        alert('Login result... navigare pe pagina HOME');
-        navigate('/home');
+        alert("Login reusit... navigare pe pagina HOME");
+        navigate("/");
       } else {
         setError(responseText);
       }
@@ -39,33 +37,25 @@ const LoginPage = () => {
       console.log(error);
     }
   };
- 
+
   useEffect(() => {
     console.log(userData);
   }, [userData]);
- 
+
   return (
     <div className="flex w-full justify-center p-4">
       <form className="flex flex-col items-center justify-around border w-3/4 h-96 px-2">
-        <input
-          className="border-gray-400 border-2 text-gray-900 outline-none text-sm rounded-md p-3 focus:border-sky-500"
-          type="text"
+        <Input
           placeholder="email"
-          required
-          autoComplete="off"
-          onChange={(e) => {
-            setUserData({ ...userData, email: e.target.value });
-          }}
+          name="email"
+          type="email"
+          onChange={(e) => onChange(e.target.name, e.target.value)}
         />
-        <input
-          className="border-gray-400 border-2 text-gray-900 outline-none text-sm rounded-md p-3 focus:border-sky-500"
-          type="password"
+        <Input
           placeholder="password"
-          required
-          autoComplete="off"
-          onChange={(e) => {
-            setUserData({ ...userData, password: e.target.value });
-          }}
+          name="password"
+          type="password"
+          onChange={(e) => onChange(e.target.name, e.target.value)}
         />
         <Button text="Login" onClick={handleSubmit} />
         <div className="flex text-lg">

@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-import LoginPage from "./LoginPage";
 import Scanner from "../components/Scanner";
 
 const HomePage = () => {
@@ -9,6 +7,6 @@ const HomePage = () => {
       <Scanner />
     </div>
   );
-};
+}
 
 export default HomePage;
