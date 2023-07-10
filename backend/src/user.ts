@@ -31,12 +31,14 @@ export async function loginUser(ctx: Koa.Context) {
       TOKEN_SECRET_KEY,
       { expiresIn: TOKEN_EXPIRES_IN }
     );
+    console.log(token, user);
     ctx.cookies.set("token", token, opts);
-    ctx.cookies.set("name", user.name, opts);
+    // ctx.cookies.set("name", user.name, opts);
     ctx.cookies.set("email", user.email, opts);
-    ctx.cookies.set("rol", user.rol, opts);
     ctx.body = { login: "success" };
+    console.log({ login: "success" })
   } catch (e) {
+    console.error(e);
     ctx.throw(400, e);
   }
 }
