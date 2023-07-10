@@ -4,13 +4,17 @@ import { useState, useEffect } from "react";
 import input from "../components/input";
 //import Input from "../components/input";
  
+import sql from "../services/SqlService";
+
 const BASE_URL = "http://localhost:80/api";
  
 const LoginPage = () => {
   const navigate = useNavigate();
   const [userData, setUserData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
- 
+  useEffect(() => {
+    sql.query('test');
+  }, []);
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -66,7 +70,7 @@ const LoginPage = () => {
         <div className="flex text-lg">
           <p>Nu ai cont?</p>
           <Link className="ml-2 underline text-blue-500" to="/register">
-            Înregistrează-te
+            Register page
           </Link>
         </div>
         {error ? <div className="text-red-600">{error}</div> : null}
