@@ -1,21 +1,24 @@
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Button from "./Button";
-
+ 
 const navigation = [
   { name: "Home", href: "/" },
   { name: "Dosar Transport", href: "/dosar-transport" },
   { name: "Facturi", href: "#" },
   { name: "Colete", href: "#" },
+  {name: "Users", href: "/users"},
 ];
-
+ 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
-
+ 
 export default function Navbar() {
+  const location = useLocation();
+ 
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
@@ -37,11 +40,6 @@ export default function Navbar() {
                 <div className="flex flex-shrink-0 items-center">
                   <img
                     className="block h-8 w-auto lg:hidden"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                    alt="Your Company"
-                  />
-                  <img
-                    className="hidden h-8 w-auto lg:block"
                     src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
                     alt="Your Company"
                   />
@@ -67,10 +65,13 @@ export default function Navbar() {
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <Link to="/login">
-                  <Button text="Login" />
-                </Link>
-
+                
+                {location.pathname !== "/login" ? (
+                  <Link to="/login">
+                    <Button text="Login" />
+                  </Link>
+                ) : null}
+ 
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
                   <div>
@@ -133,7 +134,7 @@ export default function Navbar() {
               </div>
             </div>
           </div>
-
+ 
           <Disclosure.Panel className="sm:hidden">
             <div className="space-y-1 px-2 pb-3 pt-2">
               {navigation.map((item) => (
