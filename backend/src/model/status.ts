@@ -18,3 +18,8 @@ export async function putStatus(ctx) {
     }
     ctx.body = await sql("insert into dbo.Status(nume, TipStatus, StatusDesign) values(@nume, @tipStatus, @statusDesign)", ctx.request.body);
 }
+
+export async function deleteStatus(ctx) {
+    
+    ctx.body = await sql("select * from dbo.Status");
+}
