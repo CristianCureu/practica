@@ -17,7 +17,7 @@ const LoginPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`${BASE_URL}/loginUser`, {
+      const response = await fetch(`${BASE_URL}/userLogin`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -42,11 +42,11 @@ const LoginPage = () => {
   // }, [userData]);
 
   return (
-    <div className="flex w-full justify-center p-20">
-      <form className="flex flex-col items-center justify-around border w-1/2 h-96 px-2">
+    <div className="flex w-full justify-center py-20">
+      <form className="flex flex-col items-center justify-around border w-2/4 h-96 px-2">
         <h1 className="text-2xl font-bold">Log in</h1>
         <Input
-          className="border-gray-400 border-2 text-gray-900 outline-none text-sm rounded-md p-3 focus:border-sky-500 lg:w-2/4"
+          className="border-gray-400 border-2 text-gray-900 outline-none text-sm rounded-md p-3 focus:border-indigo-600 w-2/4"
           placeholder="Email"
           name="email"
           type="email"
@@ -54,7 +54,7 @@ const LoginPage = () => {
           onChange={(e) => onChange(e.target.name, e.target.value)}
         />
         <Input
-          className="border-gray-400 border-2 text-gray-900 outline-none text-sm rounded-md p-3 focus:border-sky-500 lg:w-2/4"
+          className="border-gray-400 border-2 text-gray-900 outline-none text-sm rounded-md p-3 focus:border-indigo-600 w-2/4"
           placeholder="Password"
           name="password"
           type="password"
@@ -64,7 +64,7 @@ const LoginPage = () => {
         <Button text="Login" onClick={handleSubmit} />
         <div className="flex text-lg">
           <p>Nu ai cont?</p>
-          <Link className="ml-2 underline text-blue-500" to="/register">
+          <Link className="ml-2 underline text-indigo-500 text-indigo-600" to="/register">
             Înregistrează-te
           </Link>
         </div>

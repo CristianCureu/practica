@@ -40,11 +40,11 @@ const RegisterPage = () => {
   // }, [userData]);
 
   return (
-    <div className="flex w-full  justify-center p-20">
-      <form className="flex flex-col items-center justify-around border-gray-200 border-2 rounded-md w-3/4 lg:w-2/4 h-96">
+    <div className="flex w-full justify-center py-20">
+    <form className="flex flex-col items-center justify-around border w-2/4 h-96 px-2">
         <h1 className="text-2xl font-bold">Register</h1>
         <Input
-          className=" lg:w-2/4  border-gray-400 border-2 text-gray-900 outline-none text-sm rounded-md p-3 focus:border-sky-500"
+          className=" w-2/4  border-gray-400 border-2 text-gray-900 outline-none text-sm rounded-md p-3 focus:border-indigo-600"
           type="text"
           placeholder="Name"
           required
@@ -52,7 +52,7 @@ const RegisterPage = () => {
           onChange={(e) => setUserData({ ...userData, name: e.target.value })}
         />
         <Input
-          className=" lg:w-2/4  border-gray-400 border-2 text-gray-900 outline-none text-sm rounded-md p-3 focus:border-sky-500"
+          className="w-2/4  border-gray-400 border-2 text-gray-900 outline-none text-sm rounded-md p-3 focus:border-indigo-600"
           type="text"
           placeholder="Email"
           required
@@ -61,7 +61,7 @@ const RegisterPage = () => {
           onChange={(e) => setUserData({ ...userData, name: e.target.value })}
         />
         <Input
-          className=" lg:w-2/4  border-gray-400 border-2 text-gray-900 outline-none text-sm rounded-md p-3 focus:border-sky-500"
+          className="w-2/4  border-gray-400 border-2 text-gray-900 outline-none text-sm rounded-md p-3 focus:border-indigo-600"
           type="text"
           placeholder="Password"
           required
@@ -69,16 +69,16 @@ const RegisterPage = () => {
           onChange={(e) => setUserData({ ...userData, name: e.target.value })}
         />
         <Input
-          className=" lg:w-2/4  border-gray-400 border-2 text-gray-900 outline-none text-sm rounded-md p-3 focus:border-sky-500"
+          className="w-2/4  border-gray-400 border-2 text-gray-900 outline-none text-sm rounded-md p-3 focus:border-indigo-600"
           type="text"
-          placeholder="Confrim password"
+          placeholder="Confirm password"
           required
           autoComplete="off"
           onChange={(e) => setUserData({ ...userData, name: e.target.value })}
         />
         <Button text="register" onClick={handleSubmit} />
         {error ? <div className="text-red-600">Please complete all field!</div> : null}
-      </form>
+    </form>
     </div>
   );
 };
