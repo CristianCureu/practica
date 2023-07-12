@@ -13,6 +13,7 @@ import {
   logoutUser,
   validateToken,
 } from "./user";
+import { deleteStatus, getStatus, putStatus, updateStatus } from "./model/status";
 
 const bodyParser = koaBody({
   jsonLimit: 50 * 1024 * 1025,
@@ -50,7 +51,13 @@ router
   .post("/upload/:idWork", decode, multipartBody, upload)
   .post("/upload", decode, multipartBody, upload)
   .get("/preview", decode, preview)
-  .get("/download", decode, download);
+  .get("/download", decode, download)  
+  
+  .get("/data/status",getStatus)
+  .put("/data/status",bodyParser,putStatus)
+  .post("/data/status",bodyParser,updateStatus)
+  .delete("/data/status",bodyParser,deleteStatus);
+
 
 let index = (ctx: Koa.Context) => {
   ctx.type = "html";
