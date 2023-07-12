@@ -4,9 +4,8 @@ import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import Navbar from "./components/Navbar";
 import RegisterPage from "./pages/RegisterPage";
-import StatusPage from "./pages/StatusPagePage";
-
 import StatusPage from "./pages/StatusPage";
+import Users from "./pages/UsersPage";
 
 function App() {
   return (
@@ -17,14 +16,9 @@ function App() {
           <Route path="/home" element={<HomePage />} />
           <Route path="/dosar-transport" element={<DosarTransportPage />} />
           <Route path="/login" element={<LoginPage />} />
-<<<<<<< HEAD
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/status" element={<StatusPage />} />
-=======
           <Route path="/status" element={<StatusPage />} />
           <Route path="/users" element={<Users />} />
 
->>>>>>> 2ab9898bca069ba63d61b87728606882e7d24904
         </Routes>
       </Router>
     </div>

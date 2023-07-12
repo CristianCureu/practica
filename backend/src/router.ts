@@ -4,17 +4,8 @@ import * as Koa from "koa";
 import { HttpMethodEnum, koaBody } from "koa-body";
 import { deleteEntity, query, saveEntity } from "./sql";
 import { deleteUploadedFile, download, preview, upload } from "./upload";
-import { getStatus } from "./model/status";
-import { putStatus } from "./model/status";
 import { decode, loginUser, logoutUser, passwordRecover, passwordReset, registerUser, validateToken } from "./user";
-  decode,
-  loginUser,
-  passwordRecover,
-  registerUser,
-  passwordReset,
-  logoutUser,
-  validateToken,
-} from "./user";
+
 import { getStatus, putStatus, deleteStatus, updateStatus  } from "../model/status";
 const bodyParser = koaBody({
   jsonLimit: 50 * 1024 * 1025,
