@@ -3,14 +3,10 @@ import DosarTransportPage from "./pages/DosarTransportPage";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import Navbar from "./components/Navbar";
-<<<<<<< HEAD
 import RegisterPage from "./pages/RegisterPage";
 import Users from "./pages/UsersPage";
-=======
 
 import StatusPage from "./pages/StatusPage";
-import Users from "./pages/Users";
->>>>>>> 2ab9898bca069ba63d61b87728606882e7d24904
 
 function App() {
   return (
