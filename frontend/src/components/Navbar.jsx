@@ -7,6 +7,8 @@ import Button from "./Button";
 const navigation = [
   { name: "Home", href: "/" },
   { name: "Dosar Transport", href: "/dosar-transport" },
+  { name: "Users", href: "/users" },
+  { name: "StatusPage", href: "/status" },
   { name: "Facturi", href: "#" },
   { name: "Colete", href: "#" },
   { name: "Users", href: '/users'}
@@ -65,12 +67,9 @@ export default function Navbar() {
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                
-                {location.pathname !== "/login" ? (
-                  <Link to="/login">
-                    <Button text="Login" />
-                  </Link>
-                ) : null}
+                <Link to="/login">
+                  <Button text="Login" />
+                </Link>
 
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
