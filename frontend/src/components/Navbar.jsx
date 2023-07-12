@@ -10,6 +10,7 @@ const navigation = [
   { name: "Facturi", href: "#" },
   { name: "Colete", href: "#" },
   {name: "Users", href: "/users"},
+  {name: "Status", href: "/status"},
 ];
  
 function classNames(...classes) {
