@@ -5,6 +5,7 @@ import LoginPage from "./pages/LoginPage";
 import Navbar from "./components/Navbar";
 import RegisterPage from "./pages/RegisterPage";
 import Users from "./pages/Users";
+import StatusPage from "./pages/StatusPage";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/users" element={<Users />} />
+          <Route path="/status" element={<StatusPage />} />
         </Routes>
       </Router>
     </div>
