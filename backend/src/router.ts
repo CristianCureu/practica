@@ -15,7 +15,7 @@ import { decode, loginUser, logoutUser, passwordRecover, passwordReset, register
   logoutUser,
   validateToken,
 } from "./user";
-
+import { getStatus, putStatus, deleteStatus, updateStatus  } from "../model/status";
 const bodyParser = koaBody({
   jsonLimit: 50 * 1024 * 1025,
   formLimit: 50 * 1024 * 1025,
@@ -39,22 +39,24 @@ const multipartBody = koaBody({
 const router = new Router({ prefix: "/api" });
 
 router
-  .get("/data/status", bodyParser, getStatus)
-  .put("/data/status", bodyParser, putStatus)
-  .post("/loginUser", bodyParser, loginUser)
-  .get("/logoutUser", logoutUser)
-  .post("/registerUser", bodyParser, registerUser)
-  .post("/validateToken", bodyParser, validateToken)
-  .post("/passwordRecover", bodyParser, passwordRecover)
-  .post("/passwordReset", bodyParser, passwordReset)
-  .delete("/entity", decode, deleteEntity)
-  .post("/entity", decode, bodyParser, saveEntity)
-  .post("/query", decode, bodyParser, query)
-  .delete("/upload", decode, deleteUploadedFile)
-  .post("/upload/:idWork", decode, multipartBody, upload)
-  .post("/upload", decode, multipartBody, upload)
-  .get("/preview", decode, preview)
-  .get("/download", decode, download);
+.get("/data/status", getStatus)
+.put("/data/status", bodyParser, putStatus)
+.post("/data/status", bodyParser, updateStatus)
+.delete("/data/status", bodyParser, deleteStatus)
+.post("/loginUser", bodyParser, loginUser)
+.get("/logoutUser", logoutUser)
+.post("/registerUser", bodyParser, registerUser)
+.post("/validateToken", bodyParser, validateToken)
+.post("/passwordRecover", bodyParser, passwordRecover)
+.post("/passwordReset", bodyParser, passwordReset)
+.delete("/entity", decode, deleteEntity)
+.post("/entity", decode, bodyParser, saveEntity)
+.post("/query", decode, bodyParser, query)
+.delete("/upload", decode, deleteUploadedFile)
+.post("/upload/:idWork", decode, multipartBody, upload)
+.post("/upload", decode, multipartBody, upload)
+.get("/preview", decode, preview)
+.get("/download", decode, download);
 
 let index = (ctx: Koa.Context) => {
   ctx.type = "html";
