@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import { useState, useEffect } from "react";
 
 const BASE_URL = "http://localhost:80/api";
 
 const LoginPage = () => {
+  const navigate = useNavigate()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -28,6 +29,8 @@ const LoginPage = () => {
       console.log(responseText);
       if (response.status === 200) {
         console.log("success");
+        alert(`Login reusit... navigare pe pagina HOME`)
+        navigate(`/home`)
       } else {
         setError(responseText);
       }
@@ -37,9 +40,9 @@ const LoginPage = () => {
   };
   return (
     <div className="flex w-full justify-center p-4">
-      <form className="flex flex-col items-center justify-around border w-3/4 h-96">
+      <form className="flex flex-col items-center justify-around double-border border-4 w-3/4 h-96">
         <input
-          className="border-gray-400 border-2 text-gray-900 outline-none text-sm rounded-md p-3 focus:border-sky-500"
+          className="border-emerald-700 border-2 text-green-800 outline-none text-sm rounded-md p-3 focus:border-sky-500"
           type="text"
           placeholder="email"
           required
@@ -49,7 +52,7 @@ const LoginPage = () => {
           }}
         />
         <input
-          className="border-gray-400 border-2 text-gray-900 outline-none text-sm rounded-md p-3 focus:border-sky-500"
+          className="border-emerald-700 border-2 text-green-800 outline-none text-sm rounded-md p-3 focus:border-sky-500"
           type="password"
           placeholder="password"
           required
