@@ -1,7 +1,8 @@
 // import { stringify } from "json5";
+import React from 'react';
+import { createRoot } from 'react-dom/client';
 import { useEffect, useState } from "react";
-import { json } from "react-router-dom";
-
+import ButtonBar from "../components/ButtonBar";
 const StatusPage = () => {
 
   const [statuses, setStatus] = useState([]);
@@ -17,16 +18,18 @@ const StatusPage = () => {
         });
         const dataJson = await users.json();
         setStatus(dataJson);
-       // console.log(dataJson)
-      //  tableHead(JSON.stringify(Object.values(dataJson)));
         setTableHead(Object.values(dataJson)[1][0]);
         setTableBody(Object.values(dataJson)[1])
-      
+ 
+       // console.log(dataJson)
+      //  tableHead(JSON.stringify(Object.values(dataJson)));
+
       } catch (error) {
         console.log("Users::getStatuses::", error);
       }
     };
     getStatuses();
+           
   }, []);
 
  
@@ -43,12 +46,19 @@ const StatusPage = () => {
         td.innerText=col;
         td.scope="col";
         headRow.appendChild(td);
-        console.log(headRow);
+        
+      //  console.log(headRow);
     });
-    head.appendChild(document.createElement("th"));
+    
+    let lastTd=document.createElement("th");
+    lastTd.className="font-medium text-blue-600  dark:text-blue-500 hover:underline px-6 py-3";
+    lastTd.scope="col";
+    headRow.appendChild(lastTd);
+
     head.appendChild(headRow);
     
   }
+
 
   const editStatus = async (stat) =>{
 
@@ -58,30 +68,37 @@ const StatusPage = () => {
     
   }
 
+
+
   const setTableBody = (records)=>{
     var body = document.querySelector("tbody");
-    console.log(records)
+    //console.log(records)
     records.forEach(record => {      
       let row= document.createElement("tr")
       row.scope="col";
       row.className="px-6 py-4 font-medium";
       body.appendChild(row);
-      let keys= Object.keys(record)
-     
-      keys.forEach(key => {
+
+
+      Object.keys(record).forEach(key => {
         let td=document.createElement("td");
         td.className="px-6 py-4";
         if(key==="Id")
           row.id=record[key];
+
         td.innerText=record[key];
         row.appendChild(td)
-        
       });
 
-     
-
+      let td=document.createElement("td");
+      td.className="px-6 py-4"
+      const buttonBarElement = React.createElement(ButtonBar);
+      createRoot(td).render(buttonBarElement);
+      row.appendChild(td)
+      console.log(ButtonBar);
+    
     });
-    console.log(body);
+    //console.log(body);
     //console.log("XXXXXXXX");
     
   }
@@ -95,7 +112,7 @@ const StatusPage = () => {
         
         </thead>
         <tbody>
-        
+          
         </tbody>
     </table>
 </div>

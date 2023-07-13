@@ -3,7 +3,7 @@ const Button = ({
   onClick,
   bgColor = "bg-sky-600",
   hoverBgColor = "hover:bg-red-700",
-  color = "text-white",
+  color = "text-white"
 }) => {
   return (
     <button
