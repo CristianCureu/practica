@@ -1,5 +1,4 @@
-import { Fragment } from "react";
-import { Disclosure, Menu, Transition } from "@headlessui/react";
+import { Disclosure} from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Link, useLocation } from "react-router-dom";
 import Button from "./Button";
@@ -11,6 +10,9 @@ const navigation = [
   { name: "StatusPage", href: "/status" },
   { name: "Facturi", href: "#" },
   { name: "Colete", href: "#" },
+  { name: "Users", href: '/users'},
+  { name: "Status", href: '/status'},
+
 ];
 
 function classNames(...classes) {
