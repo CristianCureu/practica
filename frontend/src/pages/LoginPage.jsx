@@ -65,7 +65,7 @@ const LoginPage = () => {
         <div className="flex text-lg">
           <p>Nu ai cont?</p>
           <Link className="ml-2 underline text-blue-500" to="/register">
-            Înregistrează-te
+            Register page
           </Link>
         </div>
         {error ? <div className="text-red-600">{error}</div> : null}
