@@ -12,6 +12,7 @@ import UpdateDosarPage from "./pages/UpdateDosarPage";
 import DetailsDosarPage from "./pages/DetailsDosarPage";
 import CreateDosarPage from "./pages/CreateDosarPage";
 import FacturiDosarPage from "./pages/FacturiDosarPage";
+import ColetePage from "./pages/ColetePage";
 
 function App() {
   return (
@@ -32,6 +33,8 @@ function App() {
           <Route path="/detaliidosar/:id" element={<DetailsDosarPage />} />
           <Route path="/facturi/:idDosar" element={<FacturiDosarPage />} />
           <Route path="/createdosar" element={<CreateDosarPage />} />
+          <Route path="/colete" element={<ColetePage />} />
+
 
         </Routes>
       </Router>

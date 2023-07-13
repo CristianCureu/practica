@@ -6,7 +6,7 @@ const navigation = [
   { name: "Home", href: "/home" },
   { name: "Dosar Transport", href: "/dosar-transport" },
   { name: "Facturi", href: "#" },
-  { name: "Colete", href: "#" },
+  { name: "Colete", href: "/colete" },
   { name: "Users", href: '/users'},
   { name: "Status", href: '/status'},
 
