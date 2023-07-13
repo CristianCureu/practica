@@ -4,7 +4,6 @@ import Button from "../components/Button";
 import Input from "../components/Input";
 
  const LoginPage = ()=>{
-
     const navigate=useNavigate();
 
     const [userData,setUserData ] =  useState({
@@ -22,7 +21,7 @@ import Input from "../components/Input";
         e.preventDefault();
         
         try{
-            const response= await fetch(`${process.env.REACT_APP_URL}`+"/loginUser",{
+            const response= await fetch(process.env.REACT_APP_BASE_URL+"/loginUser",{
                 method:"POST",
                 headers:{
                     "Content-Type":"application/json",

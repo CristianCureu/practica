@@ -10,7 +10,9 @@ const navigation = [
     { name: 'Facturi', href: '#' },
     { name: 'Colete', href: '#' },
     { name: 'Users', href: '/users' },
+    { name: 'Status', href: '/status' },
 ]
+
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -18,7 +20,7 @@ function classNames(...classes) {
 
 export default function Navbar() {
     const location=useLocation();
-    console.log(location);
+   //console.log(location);
     return (
         <Disclosure as="nav" className="bg-gray-800">
             {({ open }) => (

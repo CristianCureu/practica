@@ -15,7 +15,7 @@ import Button from "../components/Button";
       const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-          const response = await fetch( `${process.env.REACT_APP_URL}`+"/registerUser",
+          const response = await fetch( `${process.env.REACT_APP_BASE_URL}`+"/registerUser",
             {
               method: "POST",
               headers: {
