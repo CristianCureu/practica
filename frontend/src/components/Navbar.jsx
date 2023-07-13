@@ -74,7 +74,7 @@ export default function Navbar() {
                             </Link>
                             }
                              
-                                {/* Profile dropdown */}
+                                {/* Profile dropdown 
                                 <Menu as="div" className="relative ml-3">
                                     <div>
                                         <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
@@ -128,7 +128,7 @@ export default function Navbar() {
                                             </Menu.Item>
                                         </Menu.Items>
                                     </Transition>
-                                </Menu>
+                                </Menu>*/}
                             </div>
                         </div>
                     </div>
