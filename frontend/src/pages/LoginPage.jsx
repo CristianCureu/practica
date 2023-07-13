@@ -3,7 +3,6 @@ import Button from "../components/Button";
 import { useState} from "react";
 import Input from "../components/Input";
 
-const BASE_URL = "http://localhost:80/api";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -17,7 +16,7 @@ const LoginPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`${BASE_URL}/loginUser`, {
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/loginUser`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -65,7 +64,7 @@ const LoginPage = () => {
         <div className="flex text-lg">
           <p>Nu ai cont?</p>
           <Link className="ml-2 underline text-blue-500" to="/register">
-            Înregistrează-te
+            Register page
           </Link>
         </div>
         {error ? <div className="text-red-600">{error}</div> : null}

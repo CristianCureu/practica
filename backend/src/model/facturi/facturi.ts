@@ -1,5 +1,5 @@
 import * as Koa from "koa";
-import { sql } from "./../sql";
+import { sql } from "../../sql";
 
 
 export async function getFacturiDosar(ctx: Koa.Context) {
