@@ -7,8 +7,14 @@ const navigation = [
   { name: "Dosar Transport", href: "/dosar-transport" },
   { name: "Facturi", href: "#" },
   { name: "Colete", href: "#" },
+<<<<<<< HEAD
   {name: "Users", href: '/users'},
   {name: "Status", href: '/status'}
+=======
+  { name: "Users", href: '/users'},
+  { name: "Status", href: '/status'},
+
+>>>>>>> 150672eb5f561d04eac58bb820ee938d8c79c6ce
 ];
 
 function classNames(...classes) {

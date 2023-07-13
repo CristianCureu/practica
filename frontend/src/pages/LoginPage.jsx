@@ -1,14 +1,26 @@
 import { Link } from "react-router-dom";
 import Button from "../components/Button";
+<<<<<<< HEAD
 import { useState, useEffect } from "react";
+=======
+import { useState} from "react";
+import Input from "../components/Input";
+>>>>>>> 150672eb5f561d04eac58bb820ee938d8c79c6ce
 
-const BASE_URL = "http://localhost:80/api";
+const BASE_URL = "http://localhost:8080/api";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
+<<<<<<< HEAD
+=======
+  const onChange = (field, value) => {
+    setUserData({ ...userData, [field]: value });
+  };
+
+>>>>>>> 150672eb5f561d04eac58bb820ee938d8c79c6ce
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {

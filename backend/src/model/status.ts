@@ -56,4 +56,14 @@ export async function updateStatus(ctx) {
                 where id = @id`
     await sql(query, { ...ctx.request.body, id });
     await getStatus(ctx);
+<<<<<<< HEAD
 }
+=======
+}
+
+
+
+
+
+
+>>>>>>> 150672eb5f561d04eac58bb820ee938d8c79c6ce

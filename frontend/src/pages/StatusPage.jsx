@@ -8,7 +8,11 @@ const StatusPage = () => {
   useEffect(() => {
     const getStatuses = async () => {
       try {
+<<<<<<< HEAD
         const response = await fetch(`http://localhost:80/api/data/status`, {
+=======
+        const response = await fetch(`http://localhost:8080/api/data/status`, {
+>>>>>>> 150672eb5f561d04eac58bb820ee938d8c79c6ce
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -94,4 +98,8 @@ const StatusPage = () => {
   );
 };
 
+<<<<<<< HEAD
 export default StatusPage;
+=======
+export default StatusPage;
+>>>>>>> 150672eb5f561d04eac58bb820ee938d8c79c6ce
