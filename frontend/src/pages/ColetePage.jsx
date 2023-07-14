@@ -31,7 +31,7 @@ const ColetePage = () => {
         console.log("Colet adăugat cu succes");
         // actualizare lista colete
         setColete([...colete, newColet]);
-        // resetare
+    
         setNewColet({
           id: "",
           expeditor: "",
@@ -117,8 +117,8 @@ const ColetePage = () => {
             style={{
               backgroundColor: "purple",
               color: "white",
-              borderRadius: "4px",
-              padding: "5px 10px",
+              borderRadius: "10px",
+              padding: "5px 20px",
               cursor: "pointer"
             }}
             type="button"
