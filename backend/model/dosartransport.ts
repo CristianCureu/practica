@@ -1,5 +1,5 @@
 import * as Koa from "koa";
-import { sql } from "./../sql";
+import { sql } from "../src/sql";
 
 export async function getDosar(ctx: Koa.Context) {
   let query = "select * from dbo.DosarTransport";

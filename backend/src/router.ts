@@ -14,6 +14,8 @@ import {
   validateToken,
 } from "./user";
 import { getStatus, putStatus, deleteStatus, updateStatus  } from "../model/status";
+import { getFacturiDosar, putFacturiDosar } from "../model/facturi";
+import { getDosar, putDosar,updateDosar,deletedosar } from "../model/dosartransport";
 const bodyParser = koaBody({
   jsonLimit: 50 * 1024 * 1025,
   formLimit: 50 * 1024 * 1025,
