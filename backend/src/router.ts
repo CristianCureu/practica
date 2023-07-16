@@ -41,8 +41,18 @@ router
 .put("/data/status", bodyParser, putStatus)
 .post("/data/status", bodyParser, updateStatus)
 .delete("/data/status", bodyParser, deleteStatus)
-.post("/loginUser", bodyParser, loginUser)
+
 .get("/logoutUser", logoutUser)
+.post("/loginUser", bodyParser, loginUser)
+
+.get("/data/facturidosar", getFacturiDosar)
+.put("/data/facturidosar", bodyParser, putFacturiDosar)
+
+.get("/data/dosartransport", getDosar)
+.put("/data/dosartransport", bodyParser, putDosar)
+.post("/data/dosartransport", bodyParser, updateDosar)
+.delete("/data/dosartransport",bodyParser,deletedosar)
+
 .post("/registerUser", bodyParser, registerUser)
 .post("/validateToken", bodyParser, validateToken)
 .post("/passwordRecover", bodyParser, passwordRecover)

@@ -64,7 +64,7 @@ const LoginPage = () => {
         <Button text="Login" onClick={handleSubmit} />
         <div className="flex text-lg">
           <p>Nu ai cont?</p>
-          <Link className="ml-2 underline text-indigo-500 text-indigo-600" to="/register">
+          <Link className="ml-2 underline text-indigo-500" to="/register">
             Înregistrează-te
           </Link>
         </div>

@@ -1,8 +1,9 @@
 const Button = ({
   text,
+  content,
   onClick,
-  bgColor = "bg-indigo-600",
-  hoverBgColor = "hover:bg-indigo-500",
+  bgColor,
+  hoverBgColor,
   color = "text-white",
 }) => {
   return (
@@ -11,6 +12,7 @@ const Button = ({
       onClick={onClick}
     >
       {text}
+      {content}
     </button>
   );
 };
