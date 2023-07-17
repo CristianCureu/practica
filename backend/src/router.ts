@@ -13,8 +13,14 @@ import {
   logoutUser,
   validateToken,
 } from "./user";
+<<<<<<< HEAD
 import { deleteStatus, getStatus, putStatus, updateStatus } from "./model/status";
 
+=======
+import { getStatus, putStatus, deleteStatus, updateStatus  } from "../model/status";
+import { getFacturiDosar, putFacturiDosar } from "../model/facturi";
+import { getDosar, putDosar,updateDosar,deletedosar } from "../model/dosartransport";
+>>>>>>> main
 const bodyParser = koaBody({
   jsonLimit: 50 * 1024 * 1025,
   formLimit: 50 * 1024 * 1025,
@@ -38,6 +44,7 @@ const multipartBody = koaBody({
 const router = new Router({ prefix: "/api" });
 
 router
+<<<<<<< HEAD
   .post("/loginUser", bodyParser, loginUser)
   .get("/logoutUser", logoutUser)
   .post("/registerUser", bodyParser, registerUser)
@@ -58,6 +65,36 @@ router
   .post("/data/status",bodyParser,updateStatus)
   .delete("/data/status",bodyParser,deleteStatus);
 
+=======
+.get("/data/status", getStatus)
+.put("/data/status", bodyParser, putStatus)
+.post("/data/status", bodyParser, updateStatus)
+.delete("/data/status", bodyParser, deleteStatus)
+
+.get("/logoutUser", logoutUser)
+.post("/loginUser", bodyParser, loginUser)
+
+.get("/data/facturidosar", getFacturiDosar)
+.put("/data/facturidosar", bodyParser, putFacturiDosar)
+
+.get("/data/dosartransport", getDosar)
+.put("/data/dosartransport", bodyParser, putDosar)
+.post("/data/dosartransport", bodyParser, updateDosar)
+.delete("/data/dosartransport",bodyParser,deletedosar)
+
+.post("/registerUser", bodyParser, registerUser)
+.post("/validateToken", bodyParser, validateToken)
+.post("/passwordRecover", bodyParser, passwordRecover)
+.post("/passwordReset", bodyParser, passwordReset)
+.delete("/entity", decode, deleteEntity)
+.post("/entity", decode, bodyParser, saveEntity)
+.post("/query", decode, bodyParser, query)
+.delete("/upload", decode, deleteUploadedFile)
+.post("/upload/:idWork", decode, multipartBody, upload)
+.post("/upload", decode, multipartBody, upload)
+.get("/preview", decode, preview)
+.get("/download", decode, download);
+>>>>>>> main
 
 let index = (ctx: Koa.Context) => {
   ctx.type = "html";
