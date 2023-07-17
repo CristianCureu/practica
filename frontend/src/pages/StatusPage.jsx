@@ -8,11 +8,7 @@ const StatusPage = () => {
   useEffect(() => {
     const getStatuses = async () => {
       try {
-<<<<<<< HEAD
-        const response = await fetch(`http://localhost:80/api/data/status`, {
-=======
         const response = await fetch(`http://localhost:8080/api/data/status`, {
->>>>>>> 150672eb5f561d04eac58bb820ee938d8c79c6ce
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -72,7 +68,7 @@ const StatusPage = () => {
                       text="Șterge"
                       className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 focus:outline-none focus:ring focus:ring-red-300"
                     />
-                    
+
                     <Link
                       to={`/updatestatus/${status.Id}`}
                       className="px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600 focus:outline-none focus:ring focus:ring-yellow-300"
@@ -98,8 +94,4 @@ const StatusPage = () => {
   );
 };
 
-<<<<<<< HEAD
 export default StatusPage;
-=======
-export default StatusPage;
->>>>>>> 150672eb5f561d04eac58bb820ee938d8c79c6ce
