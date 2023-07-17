@@ -110,7 +110,12 @@ const DosarTransportPage = () => {
                   <td className="py-4 px-6 whitespace-nowrap">
                     <div className="flex items-center gap-2">
                       
-                     
+                    <Button
+                        bgColor="bg-black text-yellow-500"
+                        onClick={() => deleteDosar(dosar.Id)}
+                        text="Șterge"
+                        className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 focus:outline-none focus:ring focus:ring-red-300"
+                      />
 
                       <Link
                         to={`/updatedosar/${dosar.Id}`}

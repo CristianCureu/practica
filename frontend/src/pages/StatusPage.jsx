@@ -1,11 +1,11 @@
 // import { stringify } from "json5";
 import { useEffect, useState } from "react";
 import Button from "../components/Button";
-
+import { Navigate, useNavigate } from "react-router-dom";
 const StatusPage = () => {
   const [statuses, setStatuses] = useState([]);
   const sample = {Id:"",nume:"", TipStatus:"", StatusDesign:""};
-  
+  const navigate = useNavigate();
   useEffect(() => {
     const getStatuses = async () => {
       try {
@@ -52,7 +52,7 @@ const StatusPage = () => {
       newRow.className = "border-b border-gray-200 hover:bg-gray-100";
 
       let keys=Object.keys(sample);
-      alert(keys)
+      //alert(keys)
       keys.forEach(key => {
         let field;
         if(key==='TipStatus'){
@@ -125,11 +125,11 @@ const StatusPage = () => {
   function add_status_to_db() {
     const numeInput = document.querySelector('input[name="nume"]');
     const tipStatusInput = document.querySelector('select[name="tipStatus"]');
-    alert(tipStatusInput)
+    //alert(tipStatusInput)
     const statusDesignInput = document.querySelector(
       'input[name="StatusDesign"]'
     );
-    alert(JSON.stringify(numeInput));
+    //alert(JSON.stringify(numeInput));
     const statusData = {
       nume: numeInput.value,
       tipStatus: tipStatusInput.value,
@@ -168,16 +168,13 @@ const StatusPage = () => {
     }
   }
 
-  const editRow = async (
-    statusId,
-    statusName,
-    tipStatus,
-    statusDesign,
-    index
-  ) => {
-    alert(index + 1);
+  const editThis = async (rowId) => {
+    const tbody = document.querySelector('tbody');
+    const trElements = tbody.querySelectorAll('tr');
+    const field= trElements.filter((tr) =>
+    tr.getAttribute('key').includes(rowId));
 
-    // deleteRow(statusId);
+    alert(field);
   };
 
   return (
@@ -197,7 +194,7 @@ const StatusPage = () => {
             <tr
               className="border-b border-gray-200 hover:bg-gray-100"
               key={status.Id}
-              id={`${index + 1}`}
+              id={status.Id}  
             >
               {Object.keys(status).map((key)=>(
                 <td className="py-3 px-6 text-left whitespace-nowrap">
@@ -208,8 +205,10 @@ const StatusPage = () => {
               <td className="flex flex-row py-3 px-3 text-center">
                 <svg 
                   xmlns="http://www.w3.org/2000/svg" 
-                  onClick={()=>editRow()}
-                  version="1.0"
+                  onClick={()=>editThis(status.Id)}
+                
+                 // onClick={()=>navigate(`/updatestatus/${status.Id}`)}
+                 version="1.0"
                     width="24.000000pt" height="24.000000pt" 
                     viewBox="0 0 32.000000 32.000000" preserveAspectRatio="xMidYMid meet">
                   <metadata>

@@ -259,7 +259,7 @@ const UpdateDosarPage = () => {
           <div className="md:flex md:items-center">
             <div className="md:w-1/3"></div>
             <div className="md:w-2/3">
-              <Button text="Update Dosar" onClick={handleSubmit} />
+              <Button bgColor="bg-green-400" text="Update Dosar" onClick={handleSubmit} />
             </div>
           </div>
           {error && <div className="text-red-600">{error}</div>}
