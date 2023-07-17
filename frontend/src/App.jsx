@@ -9,7 +9,10 @@ import UpdateDosarPage from "./pages/UpdateDosarPage"
 import DetailsDosarPage from "./pages/DetailsDosarPage"
 import CreateDosarPage from "./pages/CreateDosarPage"
 import FacturiDosarPage from "./pages/FacturiDosarPage"
-import UpdateStatusPage from "./pages/UpdateStatusPage";
+import UpdateStatusPage from "./pages/UpdateStatusPage"
+import DosarPage from "./pages/ScanDosarPage";
+;
+
 function App() {
   return (
     <div className="App">
@@ -26,6 +29,9 @@ function App() {
           <Route path="/updatedosar/:id" element={<UpdateDosarPage />} />
           <Route path="/detaliidosar/:id" element={<DetailsDosarPage />} />
           <Route path="/createdosar" element={<CreateDosarPage />} />
+
+          <Route path="/scan/dosar/:idDosar" element={<DosarPage />} />
+
         </Routes>
       </Router>
     </div>

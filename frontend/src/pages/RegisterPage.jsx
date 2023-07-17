@@ -76,7 +76,7 @@ const RegisterPage = () => {
           autoComplete="off"
           onChange={(e) => setUserData({ ...userData, name: e.target.value })}
         />
-        <Button text="register" onClick={handleSubmit} />
+        <Button bgColor="bg-green-400" text="register" onClick={handleSubmit} />
         {error ? <div className="text-red-600">Please complete all field!</div> : null}
     </form>
     </div>

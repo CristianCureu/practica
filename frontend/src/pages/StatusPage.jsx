@@ -169,12 +169,6 @@ const StatusPage = () => {
   }
 
   const editThis = async (rowId) => {
-    const tbody = document.querySelector('tbody');
-    const trElements = tbody.querySelectorAll('tr');
-    const field= trElements.filter((tr) =>
-    tr.getAttribute('key').includes(rowId));
-
-    alert(field);
   };
 
   return (
@@ -205,9 +199,8 @@ const StatusPage = () => {
               <td className="flex flex-row py-3 px-3 text-center">
                 <svg 
                   xmlns="http://www.w3.org/2000/svg" 
-                  onClick={()=>editThis(status.Id)}
-                
-                 // onClick={()=>navigate(`/updatestatus/${status.Id}`)}
+                  //onClick={()=>editThis(status.Id)}
+                  onClick={()=>navigate(`/updatestatus/${status.Id}`)}
                  version="1.0"
                     width="24.000000pt" height="24.000000pt" 
                     viewBox="0 0 32.000000 32.000000" preserveAspectRatio="xMidYMid meet">
