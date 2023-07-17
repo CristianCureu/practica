@@ -20,28 +20,28 @@ export async function putDosar(ctx: Koa.Context) {
   if (!descriere) {
     return ctx.throw(400, "Coloana <descriere> este obligatorie pentru tabela <DosarTransport>!");
   }
-//   if (!paletare) {
-//     return ctx.throw(400, "Coloana <paletare> este obligatorie pentru tabela <DosarTransport>!");
-//   }
+  //   if (!paletare) {
+  //     return ctx.throw(400, "Coloana <paletare> este obligatorie pentru tabela <DosarTransport>!");
+  //   }
   if (!qr) {
     return ctx.throw(400, "Coloana <qr> este obligatorie pentru tabela <DosarTransport>!");
   }
   if (!creatDe) {
     return ctx.throw(400, "Coloana <creatDe> este obligatorie pentru tabela <DosarTransport>!");
   }
-//   if (!creatLa) {
-//     return ctx.throw(400, "Coloana <creatLa> este obligatorie pentru tabela <DosarTransport>!");
-//   }
+  //   if (!creatLa) {
+  //     return ctx.throw(400, "Coloana <creatLa> este obligatorie pentru tabela <DosarTransport>!");
+  //   }
   if (!sofer) {
     return ctx.throw(400, "Coloana <sofer> este obligatorie pentru tabela <DosarTransport>!");
   }
-//   if (!auto) {
-//     return ctx.throw(400, "Coloana <auto> este obligatorie pentru tabela <DosarTransport>!");
-//   }
-//   if (!scanatIncarcare) {
-//     return ctx.throw(400, "Coloana <scanatIncarcare> este obligatorie pentru tabela <DosarTransport>!");
-//   }
-  
+  //   if (!auto) {
+  //     return ctx.throw(400, "Coloana <auto> este obligatorie pentru tabela <DosarTransport>!");
+  //   }
+  //   if (!scanatIncarcare) {
+  //     return ctx.throw(400, "Coloana <scanatIncarcare> este obligatorie pentru tabela <DosarTransport>!");
+  //   }
+
   await sql(
     "insert into dbo.DosarTransport(Nume, Descriere, Paletare, QR, CreatDe, CreatLa, Sofer, Auto, ScanatIncarcare) values(@nume, @descriere, @paletare, @qr, @creatDe, @creatLa, @sofer, @auto, @scanatIncarcare)",
     ctx.request.body
@@ -50,14 +50,14 @@ export async function putDosar(ctx: Koa.Context) {
 }
 
 export async function deletedosar(ctx: Koa.Context) {
-    let id = ctx.request.query.id;
-    if (Array.isArray(id)) {
-      id = id[0]; // Accesează prima valoare din array
-    }
-    await sql(`delete from dbo.DosarTransport where id = @id`, { id });
-    await getDosar(ctx);
+  let id = ctx.request.query.id;
+  if (Array.isArray(id)) {
+    id = id[0]; // Accesează prima valoare din array
   }
-  
+  await sql(`delete from dbo.DosarTransport where id = @id`, { id });
+  await getDosar(ctx);
+}
+
 
 export async function updateDosar(ctx: Koa.Context) {
   let { id } = ctx.request.body;
