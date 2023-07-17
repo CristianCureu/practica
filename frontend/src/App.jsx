@@ -13,6 +13,20 @@ import DetailsDosarPage from "./pages/DetailsDosarPage";
 import CreateDosarPage from "./pages/CreateDosarPage";
 import FacturiDosarPage from "./pages/FacturiDosarPage";
 import ColetePage from "./pages/ColetePage";
+import ScanDosarPage from "./pages/ScanDosarPage";
+import { createContext } from "react";
+
+let userContext = JSON.stringify({
+  loggedIn: false,
+  user "",
+  role: "sofer",
+  name: "",
+  auto: "",
+});
+
+
+
+const UserContext = createContext(JSON.parse(localStorage.getItem('userContext') || '{}'));
 
 function App() {
   return (
@@ -20,6 +34,7 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
+
           <Route path="/" element={<DosarTransportPage />} />
           <Route path="/home" element={<HomePage />} />
           <Route path="/dosar-transport" element={<DosarTransportPage />} />
@@ -32,9 +47,9 @@ function App() {
           <Route path="/updatedosar/:id" element={<UpdateDosarPage />} />
           <Route path="/detaliidosar/:id" element={<DetailsDosarPage />} />
           <Route path="/facturi/:idDosar" element={<FacturiDosarPage />} />
+          <Route path="/scan/dosar/:idDosar" element={<ScanDosarPage />} />
           <Route path="/createdosar" element={<CreateDosarPage />} />
           <Route path="/colete" element={<ColetePage />} />
-
 
         </Routes>
       </Router>
