@@ -14,12 +14,12 @@ const UpdateDosarPage = () => {
   const [auto, setAuto] = useState("");
   const [scanatLivrare, setScanatLivrare] = useState(new Date().toISOString().slice(0, 16));
   const [error, setError] = useState("");
-  const BASE_URL = "http://localhost:8080/api/data";
+  const BASE_URL = "/api/data";
 
   useEffect(() => {
     const getDosarData = async () => {
       try {
-        const response = await fetch(`${BASE_URL}/dosartransport?id=${id}`, {
+        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/data/dosartransport?id=${id}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -51,7 +51,7 @@ const UpdateDosarPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`${BASE_URL}/dosartransport?id=${id}`, {
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/data/dosartransport?id=${id}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
