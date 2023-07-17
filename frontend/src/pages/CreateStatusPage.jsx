@@ -8,12 +8,11 @@ const CreateStatusPage = () => {
     statusDesign: ""
   });
   const [error, setError] = useState("");
-  const BASE_URL="http://localhost:8080/api/data";
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-     // const response = await fetch( `$http://localhost:8080/api/data/status', {
-      const response = await fetch( `${BASE_URL}/status`,{
+      // const response = await fetch( `$/api/data/status', {
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/data/status`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -81,7 +80,7 @@ const CreateStatusPage = () => {
         />
         <Button text="Create Status" onClick={handleSubmit} />
         {error && <div className="text-red-600">{error}</div>}
-        
+
       </form>
     </div>
   );
