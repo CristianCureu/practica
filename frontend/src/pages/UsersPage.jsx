@@ -1,6 +1,6 @@
 // import { stringify } from "json5";
 import { useEffect, useState } from "react";
-
+import './curbe.css'  
 const Users = () => {
   const [users, setUsers] = useState([]);
   useEffect(() => {
@@ -25,15 +25,34 @@ const Users = () => {
     };
     getUsers();
   }, []);
+
+
+
+  const rowFactory = () => {
+    return (users.map((user)=>(
+    <tr>
+      <td className=" text-white  bg-gradient-to-l from-orange-400 to-pink-500 transition-shadow duration-300 px-20 shadow-md hover:shadow-lg " >
+        {user.name}&nbsp;&nbsp;  {user.email}
+      </td>
+    </tr>
+    )))
+    
+    
+};
+
+
   return (
-    <div>
-      {users.map((user) => (
-        <div key={user.id}>
-          <h1>{user.email}</h1>
-          <p>{user.name}</p>
-        </div>
-      ))}
-    </div>
+  <div className="flex flex-row justify-center px-5 mt-10"> 
+    <table >
+      <thead>
+        <tr><th>USERS</th></tr>
+      </thead>  
+      <tbody>
+      {rowFactory()}
+      </tbody>
+    </table>
+  </div>
+
   );
 };
 
