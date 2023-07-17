@@ -1,19 +1,16 @@
-import { Link, useNavigate } from "react-router-dom";
-import Button from "../components/Button";
-import { useState} from "react";
-import Input from "../components/Input";
-import React from "react"
 import { useState, useEffect} from "react";
+import { useFetcher } from "react-router-dom";
 
 
 const DosarPage = () => {
- 
-
+    const [dosar, setDosar]=useEffect([]);
+    const {idDosar}=useEffect({});
+   
     useEffect(()=>{
         //data- Dosar valid 
         const data = async () =>{
             try{
-                const response = await fetch(,);
+                const response = await fetch(`${process.env.REACT_APP_BASE_URL}`,);
                 const responseJson= response.json();
             
             }

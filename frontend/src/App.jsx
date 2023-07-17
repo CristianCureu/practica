@@ -4,10 +4,6 @@ import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import Navbar from "./components/Navbar";
 import RegisterPage from "./pages/RegisterPage";
-<<<<<<< HEAD
-import Users from "./pages/Users";
-import StatusPage from "./pages/StatusPage";
-=======
 import StatusPage from "./pages/StatusPage";
 import UpdateDosarPage from "./pages/UpdateDosarPage"
 import DetailsDosarPage from "./pages/DetailsDosarPage"
@@ -15,8 +11,8 @@ import CreateDosarPage from "./pages/CreateDosarPage"
 import FacturiDosarPage from "./pages/FacturiDosarPage"
 import UpdateStatusPage from "./pages/UpdateStatusPage"
 import DosarPage from "./pages/ScanDosarPage";
+import UsersPage from "./pages/UsersPage";
 ;
->>>>>>> main
 
 function App() {
   return (
@@ -25,13 +21,10 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/home" element={<HomePage />} />
+          <Route path="/users" element={<UsersPage />} />
           <Route path="/dosar-transport" element={<DosarTransportPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
-<<<<<<< HEAD
-          <Route path="/users" element={<Users />} />
-          <Route path="/status" element={<StatusPage />} />
-=======
           <Route path="/status" element={<StatusPage />} />
           <Route path="/updatestatus/:id" element={<UpdateStatusPage />} />
           <Route path="/facturi/:idDosar" element={<FacturiDosarPage />} />
@@ -41,7 +34,6 @@ function App() {
 
           <Route path="/scan/dosar/:idDosar" element={<DosarPage />} />
 
->>>>>>> main
         </Routes>
       </Router>
     </div>

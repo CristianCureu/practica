@@ -1,143 +1,20 @@
 // import { stringify } from "json5";
-<<<<<<< HEAD
-import React from 'react';
-import { createRoot } from 'react-dom/client';
-import { useEffect, useState } from "react";
-import ButtonBar from "../components/ButtonBar";
-const StatusPage = () => {
-
-  const [statuses, setStatus] = useState([]);
-  useEffect(() => {
-    const getStatuses = async () => {
-      try {
-        const users= await fetch(process.env.REACT_APP_BASE_URL+"/data/status",{
-=======
 import { useEffect, useState } from "react";
 import Button from "../components/Button";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const StatusPage = () => {
+  
   const [statuses, setStatuses] = useState([]);
   const sample = {Id:"",nume:"", TipStatus:"", StatusDesign:""};
   const navigate = useNavigate();
   useEffect(() => {
     const getStatuses = async () => {
       try {
-        const statuses = await fetch(`http://localhost:80/api/data/status`, {
->>>>>>> main
+        const statuses = await fetch(`${process.env.REACT_APP_BASE_URL}/data/status`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
           },
-<<<<<<< HEAD
-          
-        });
-        const dataJson = await users.json();
-        setStatus(dataJson);
-        setTableHead(Object.values(dataJson)[1][0]);
-        setTableBody(Object.values(dataJson)[1])
- 
-       // console.log(dataJson)
-      //  tableHead(JSON.stringify(Object.values(dataJson)));
-
-      } catch (error) {
-        console.log("Users::getStatuses::", error);
-      }
-    };
-    getStatuses();
-           
-  }, []);
-
- 
-    const setTableHead = (sample)=>{
-      let head = document.querySelector("thead");
-      var headRow = document.createElement("tr");
-      const colNames=Object.keys(sample);
-      // console.log(sample);
-      //console.log(colNames);
-
-      colNames.forEach(col => {
-        let td=document.createElement("th");
-        td.className="font-medium text-blue-600  dark:text-blue-500 hover:underline px-6 py-3";
-        td.innerText=col;
-        td.scope="col";
-        headRow.appendChild(td);
-        
-      //  console.log(headRow);
-    });
-    
-    let lastTd=document.createElement("th");
-    lastTd.className="font-medium text-blue-600  dark:text-blue-500 hover:underline px-6 py-3";
-    lastTd.scope="col";
-    headRow.appendChild(lastTd);
-
-    head.appendChild(headRow);
-    
-  }
-
-
-  const editStatus = async (stat) =>{
-
-  }
-
-  const deleteStatus = async (stat) =>{
-    
-  }
-
-
-
-  const setTableBody = (records)=>{
-    var body = document.querySelector("tbody");
-    //console.log(records)
-    records.forEach(record => {      
-      let row= document.createElement("tr")
-      row.scope="col";
-      row.className="px-6 py-4 font-medium";
-      body.appendChild(row);
-
-
-      Object.keys(record).forEach(key => {
-        let td=document.createElement("td");
-        td.className="px-6 py-4";
-        if(key==="Id")
-          row.id=record[key];
-
-        td.innerText=record[key];
-        row.appendChild(td)
-      });
-
-      let td=document.createElement("td");
-      td.className="px-6 py-4"
-      const buttonBarElement = React.createElement(ButtonBar);
-      createRoot(td).render(buttonBarElement);
-      row.appendChild(td)
-      console.log(ButtonBar);
-    
-    });
-    //console.log(body);
-    //console.log("XXXXXXXX");
-    
-  }
-
-
-  return (
-   
-<div className=" relative overflow-y-auto overflow-x-auto shadow-md sm:rounded-lg mx-auto w-fit">
-    <table className="text-sm text-left text-gray-500 dark:text-gray-400">
-        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-        
-        </thead>
-        <tbody>
-          
-        </tbody>
-    </table>
-</div>
-
-  );
-
-};
-
-export default StatusPage;
-=======
         });
         const statusesJson = await statuses.json();
         setStatuses(statusesJson);
@@ -153,7 +30,7 @@ export default StatusPage;
   const deleteRow = async (id) => {
     try {
       const statuses = await fetch(
-        `http://localhost:80/api/data/status?id=${id}`,
+        `${process.env.REACT_APP_BASE_URL}/data/status?id=${id}`,
         {
           method: "DELETE",
           headers: {
@@ -162,8 +39,7 @@ export default StatusPage;
         }
       );
       const statusesJson = await statuses.json();
-      setStatuses(statusesJson);
-      console.log({ statusesJson });
+      window.location.reload();
     } catch (error) {
       console.log("Users::setStatuses::", error);
     }
@@ -292,8 +168,8 @@ export default StatusPage;
     }
   }
 
-  const editThis = async (rowId) => {
-  };
+ // const editThis = async (rowId) => {
+  //};
 
   return (
     <div className="overflow-x-auto flex flex-col items-center space-y-10 ">
@@ -392,4 +268,3 @@ export default StatusPage;
 };
 
 export default StatusPage;
->>>>>>> main

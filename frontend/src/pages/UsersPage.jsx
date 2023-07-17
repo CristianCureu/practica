@@ -6,7 +6,7 @@ const Users = () => {
   useEffect(() => {
     const getUsers = async () => {
       try {
-        const users= await fetch(`${process.env.REACT_APP_URL}`+"/query",{
+        const users = await fetch(`${process.env.REACT_APP_BASE_URL}/query`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
