@@ -5,7 +5,7 @@ import Button from "./Button";
 const navigation = [
   { name: "Home", href: "/home" },
   { name: "Dosar Transport", href: "/dosar-transport" },
-  { name: "Facturi", href: "#" },
+  { name: "Facturi", href: "/facturi" },
   { name: "Colete", href: "#" },
   { name: "Users", href: '/users'},
   { name: "Status", href: '/status'},

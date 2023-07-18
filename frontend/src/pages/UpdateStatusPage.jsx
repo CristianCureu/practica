@@ -9,22 +9,25 @@ const UpdateStatusPage = () => {
   const [tipStatus, setTipStatus] = useState("");
   const [statusDesign, setStatusDesign] = useState("");
   const [error, setError] = useState("");
-  const BASE_URL = "http://localhost:8080/api/data";
 
   useEffect(() => {
     const getStatusData = async () => {
       try {
-        const response = await fetch(`${BASE_URL}/status?id=${id}`, {
+        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/data/status?id=${id}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
           },
         });
 
-        const statusData = await response.json();
+        const [statusData] = await response.json();
+        if(!statusData){
+          return alert('Acest status nu exista in baza de date !');
+        }
+        console.log(statusData);
         setNume(statusData.nume);
-        setTipStatus(statusData.tipStatus);
-        setStatusDesign(statusData.statusDesign);
+        setTipStatus(statusData.TipStatus);
+        setStatusDesign(statusData.StatusDesign);
       } catch (error) {
         console.log("Error while fetching status data:", error.message);
       }
@@ -36,7 +39,7 @@ const UpdateStatusPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`${BASE_URL}/status?id=${id}`, {
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/data/status?id=${id}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -47,7 +50,7 @@ const UpdateStatusPage = () => {
       if (response.ok) {
         console.log("Status updated successfully");
         // Redirecționează utilizatorul către pagina Home
-        window.location.href = "/home";
+        window.location.href = "/status";
       } else {
         const errorMessage = await response.text();
         setError(errorMessage);
