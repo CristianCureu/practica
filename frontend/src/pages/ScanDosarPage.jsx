@@ -10,6 +10,8 @@ const ScanDosarPage = () => {
   const { idDosar } = useParams();
   const [dosar, setDosar] = useState({});
   const enqueueSnackBar = EnqueueSnackBar();
+  const [editMode, setEditMode] = useState(false);
+  const [datePersonaleConfirmate, setDatePersonaleConfirmate] = useState(false);
 
   useEffect(() => {
     const validateDosar = async () => {
@@ -51,10 +53,7 @@ const ScanDosarPage = () => {
           placeholder="Name"
           required
           autoComplete="off"
-          onChange={(e) => {
-            setUser({ ...user, name: e.target.value });
-            console.log({ ...user, name: e.target.value });
-          }}
+          onChange={(e) => setUser({ ...user, name: e.target.value })}
         />
         <input
           className=" lg:w-3/4  border-gray-400 border-2 text-gray-900 outline-none text-sm rounded-md p-3 focus:border-sky-500"
