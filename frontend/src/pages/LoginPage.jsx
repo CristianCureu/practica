@@ -46,7 +46,7 @@ const LoginPage = () => {
           type="text"
           placeholder="email"
           name="email"
-          type="email"
+          
           onChange={(e) => onChange(e.target.name, e.target.value)}
         />
         <input
@@ -54,7 +54,7 @@ const LoginPage = () => {
           type="password"
           placeholder="password"
           name="password"
-          type="password"
+          
           onChange={(e) => onChange(e.target.name, e.target.value)}
         />
         <Button text="Login" onClick={handleSubmit} />
