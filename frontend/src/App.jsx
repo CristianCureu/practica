@@ -6,8 +6,11 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 
 import StatusPage from "./pages/StatusPage";
-import Users from "./pages/Users";
-
+import UpdateStatusPage from "./pages/UpdateStatusPage";
+import UpdateDosarPage from "./pages/UpdateDosarPage";
+import DetailsDosarPage from "./pages/DetailsDosarPage";
+import CreateDosarPage from "./pages/CreateDosarPage";
+import FacturiDosarPage from "./pages/FacturiDosarPage";
 
 function App() {
   return (
@@ -21,7 +24,11 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/users" element={<Users />} />
           <Route path="/status" element={<StatusPage />} />
-
+          <Route path="/updatestatus/:id" element={<UpdateStatusPage />} />
+          <Route path="/updatedosar/:id" element={<UpdateDosarPage />} />
+          <Route path="/detaliidosar/:id" element={<DetailsDosarPage />} />
+          <Route path="/facturi/:id" element={<FacturiDosarPage />} />
+          <Route path="/createdosar" element={<CreateDosarPage />} />
 
         </Routes>
       </Router>
