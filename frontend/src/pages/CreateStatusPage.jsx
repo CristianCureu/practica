@@ -1,29 +1,38 @@
 import React, { useState } from "react";
 import Button from "../components/Button";
+import { useNavigate } from "react-router-dom";
+import EnqueueSnackBar, { VariantType } from "../components/UseSnackbar";
 
 const CreateStatusPage = () => {
   const [statusData, setStatusData] = useState({
     nume: "",
     tipStatus: "",
-    statusDesign: ""
+    statusDesign: "",
   });
   const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const enqueueSnackBar = EnqueueSnackBar();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-     // const response = await fetch( `$/api/data/status', {
-      const response = await fetch( `${process.env.REACT_APP_BASE_URL}/data/status`,{
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(statusData),
-      });
+      // const response = await fetch( `$/api/data/status', {
+      const response = await fetch(
+        `${process.env.REACT_APP_BASE_URL}/data/status`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(statusData),
+        }
+      );
 
       if (response.ok) {
         console.log("Status added successfully");
+        enqueueSnackBar("Status added successfully", VariantType.SUCCESS);
         // Redirecționează utilizatorul către pagina de home
-        window.location.href = "/status";
+        navigate("/status");
       } else {
         const errorMessage = await response.text();
         setError(errorMessage);
@@ -80,11 +89,9 @@ const CreateStatusPage = () => {
         />
         <Button text="Create Status" onClick={handleSubmit} />
         {error && <div className="text-red-600">{error}</div>}
-        
       </form>
     </div>
   );
 };
-
 
 export default CreateStatusPage;

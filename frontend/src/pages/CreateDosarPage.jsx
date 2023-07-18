@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Button from "../components/Button";
 import { v4 as uuidv4 } from "uuid";
+import EnqueueSnackBar, { VariantType } from "../components/UseSnackbar";
+import { useNavigate } from "react-router-dom";
 
 const CreateDosarPage = () => {
   const [dosarData, setDosarData] = useState({
@@ -12,9 +14,11 @@ const CreateDosarPage = () => {
     creatLa: new Date().toISOString().slice(0, 19),
     sofer: "",
     auto: "",
-    scanatIncarcare: null
+    scanatIncarcare: null,
   });
   const [error, setError] = useState("");
+  const enqueueSnackBar = EnqueueSnackBar();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,21 +29,25 @@ const CreateDosarPage = () => {
         creatLa: new Date().toISOString().slice(0, 19),
         scanatIncarcare: dosarData.scanatIncarcare
           ? new Date(dosarData.scanatIncarcare).toISOString().slice(0, 19)
-          : null
+          : null,
       };
 
-      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/data/dosartransport`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newDosarData),
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_BASE_URL}/data/dosartransport`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newDosarData),
+        }
+      );
 
       if (response.ok) {
         console.log("Dosar added successfully");
+        enqueueSnackBar("Dosar added successfully", VariantType.SUCCESS);
         // Redirect the user to the home page
-        window.location.href = "/dosar-transport";
+        navigate("/dosar-transport");
       } else {
         const errorMessage = await response.text();
         setError(errorMessage);

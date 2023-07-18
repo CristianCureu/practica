@@ -1,6 +1,6 @@
 // UpdateStatusPage.jsx
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Button from "../components/Button";
 import EnqueueSnackBar, { VariantType } from "../components/UseSnackbar";
 
@@ -11,6 +11,7 @@ const UpdateStatusPage = () => {
   const [statusDesign, setStatusDesign] = useState("");
   const [error, setError] = useState("");
   const enqueueSnackBar = EnqueueSnackBar();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getStatusData = async () => {
@@ -60,8 +61,9 @@ const UpdateStatusPage = () => {
       if (response.ok) {
         console.log("Status updated successfully");
         // Redirecționează utilizatorul către pagina Home
-        window.location.href = "/status";
+
         enqueueSnackBar("Status updated successfully", VariantType.SUCCESS);
+        navigate("/status");
       } else {
         const errorMessage = await response.text();
         setError(errorMessage);
