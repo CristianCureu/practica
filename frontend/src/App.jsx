@@ -13,11 +13,10 @@ import DetailsDosarPage from "./pages/DetailsDosarPage";
 import CreateDosarPage from "./pages/CreateDosarPage";
 import FacturiDosarPage from "./pages/FacturiDosarPage";
 import ScanDosarPage from "./pages/ScanDosarPage";
-import { useContext } from "react";
 
-
-import { createContext } from "react";
-
+import { createContext, useEffect, useState } from "react";
+import ScanColetPage from "./pages/ScanColetPage";
+// structura pentru userContext
 let userContext = JSON.stringify({
   loggedId: false,
   user: "",
@@ -28,32 +27,41 @@ let userContext = JSON.stringify({
 
 export const UserContext = createContext(null);
 
-
 function App() {
-
+  const [user, setUser] = useState(
+    JSON.parse(localStorage.getItem("userContext") || userContext)
+  );
+  useEffect(() => {
+    console.log("userState::App", user);
+    localStorage.setItem("userContext", JSON.stringify(user));
+  }, [user]);
   return (
     <div className="App">
-
-      <Router>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<DosarTransportPage />} />
-          <Route path="/home" element={<HomePage />} />
-          <Route path="/dosar-transport" element={<DosarTransportPage />} />
-          <Route path="/createdosar" element={<CreateDosarPage />} />
-          <Route path="/updatedosar/:id" element={<UpdateDosarPage />} />
-          <Route path="/detaliidosar/:id" element={<DetailsDosarPage />} />
-          <Route path="/facturi/:idDosar" element={<FacturiDosarPage />} />
-          <Route path="/scan/dosar/:idDosar" element={<ScanDosarPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/users" element={<Users />} />
-          <Route path="/createstatus" element={<CreateStatusPage />} />
-          <Route path="/status" element={<StatusPage />} />
-          <Route path="/updatestatus/:id" element={<UpdateStatusPage />} />
-
-        </Routes>
-      </Router>
+      <UserContext.Provider value={{ user, setUser }}>
+        <Router>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<DosarTransportPage />} />
+            <Route path="/home" element={<HomePage />} />
+            <Route path="/dosar-transport" element={<DosarTransportPage />} />
+            <Route path="/createdosar" element={<CreateDosarPage />} />
+            <Route path="/updatedosar/:id" element={<UpdateDosarPage />} />
+            <Route path="/detaliidosar/:id" element={<DetailsDosarPage />} />
+            <Route path="/facturi/:idDosar" element={<FacturiDosarPage />} />
+            <Route path="/scan/dosar/:idDosar" element={<ScanDosarPage />} />
+            <Route
+              path="/scan/dosar/:idDosar/scan-colet"
+              element={<ScanColetPage />}
+            />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/users" element={<Users />} />
+            <Route path="/createstatus" element={<CreateStatusPage />} />
+            <Route path="/status" element={<StatusPage />} />
+            <Route path="/updatestatus/:id" element={<UpdateStatusPage />} />
+          </Routes>
+        </Router>
+      </UserContext.Provider>
     </div>
   );
 }
