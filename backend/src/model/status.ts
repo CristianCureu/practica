@@ -2,8 +2,8 @@
 import { sql } from "./../sql";
 
 export async function getStatus(ctx) {
-    const { recordsets } = await sql("select * from dbo.Status");
-    ctx.body = recordsets;
+    const { recordset } = await sql("select * from dbo.Status");
+    ctx.body = recordset;
 }
 
 export async function putStatus(ctx) {
@@ -50,3 +50,9 @@ export async function updateStatus(ctx) {
     await sql(query, ctx.request.body);
     await getStatus(ctx);
 }
+
+
+
+
+
+

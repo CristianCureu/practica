@@ -39,10 +39,13 @@ const multipartBody = koaBody({
 const router = new Router({ prefix: "/api" });
 
 router
+  //.delete("/data/status", deleteStatus)
   .get("/data/status", getStatus)
-  .put("/data/status", bodyParser, putStatus)
-  .post("/data/status", bodyParser, updateStatus)
-  .delete("/data/status", bodyParser, deleteStatus)
+ .put("/data/status", bodyParser, putStatus)
+ //.put("/data/status/:id", bodyParser, putStatus)
+ .post("/data/status", bodyParser, updateStatus)
+  .delete("/data/status",bodyParser,deleteStatus)
+ // .put("/data/status/:id", bodyParser, updateStatus)
   .post("/loginUser", bodyParser, loginUser)
   .get("/logoutUser", logoutUser)
   .post("/registerUser", bodyParser, registerUser)
@@ -51,7 +54,7 @@ router
   .post("/passwordReset", bodyParser, passwordReset)
   .delete("/entity", decode, deleteEntity)
   .post("/entity", decode, bodyParser, saveEntity)
-  .post("/query", decode, bodyParser, query)
+  .post("/query", bodyParser, query)
   .delete("/upload", decode, deleteUploadedFile)
   .post("/upload/:idWork", decode, multipartBody, upload)
   .post("/upload", decode, multipartBody, upload)
