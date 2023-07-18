@@ -15,6 +15,7 @@ import FacturiDosarPage from "./pages/FacturiDosarPage";
 import ScanDosarPage from "./pages/ScanDosarPage";
 
 import { createContext, useEffect, useState } from "react";
+import ScanColetPage from "./pages/ScanColetPage";
 import { SnackbarProvider } from "notistack";
 
 // structura pentru userContext
@@ -51,6 +52,10 @@ function App() {
               <Route path="/detaliidosar/:id" element={<DetailsDosarPage />} />
               <Route path="/facturi/:idDosar" element={<FacturiDosarPage />} />
               <Route path="/scan/dosar/:idDosar" element={<ScanDosarPage />} />
+              <Route
+                path="/scan/dosar/:idDosar/scan-colet"
+                element={<ScanColetPage />}
+              />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/register" element={<RegisterPage />} />
               <Route path="/users" element={<Users />} />

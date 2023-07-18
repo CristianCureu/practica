@@ -46,7 +46,10 @@ const ScanDosarPage = () => {
         <div>
           <Button
             text="Incepe scanare colete"
-            onClick={() => setUser({ ...user })}
+            onClick={() => {
+              setUser({ ...user });
+              navigate(`scan-colet`);
+            }}
           />
         </div>
       ) : user.name && !editMode ? (
