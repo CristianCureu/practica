@@ -9,11 +9,7 @@ const UpdateStatusPage = () => {
   const [tipStatus, setTipStatus] = useState("");
   const [statusDesign, setStatusDesign] = useState("");
   const [error, setError] = useState("");
-<<<<<<< HEAD
-  const BASE_URL = "http://localhost:80/api/data";
-=======
   const BASE_URL = "http://localhost:8080/api/data";
->>>>>>> 150672eb5f561d04eac58bb820ee938d8c79c6ce
 
   useEffect(() => {
     const getStatusData = async () => {
@@ -26,7 +22,7 @@ const UpdateStatusPage = () => {
         });
 
         const [statusData] = await response.json();
-        if(!statusData){
+        if (!statusData) {
           return alert('Acest status nu exista in baza de date !');
         }
         console.log(statusData);
@@ -105,8 +101,4 @@ const UpdateStatusPage = () => {
   );
 };
 
-<<<<<<< HEAD
 export default UpdateStatusPage;
-=======
-export default UpdateStatusPage;
->>>>>>> 150672eb5f561d04eac58bb820ee938d8c79c6ce
