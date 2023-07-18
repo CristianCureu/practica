@@ -11,6 +11,7 @@ const navigation = [
     { name: 'Creeaza Cont', href: '/CreeazaCont' },
     { name: 'Dashboard', href: '/Dashboard' },
     { name: 'Dosare', href: '/Dosare' },
+    { name: 'PaginaSofer', href: '/PaginaSofer' },
 ]
 
 function classNames(...classes) {

@@ -6,6 +6,8 @@ import CreeazaCont from "./pages/CreeazaCont";
 import Dashboard from "./pages/Dashboard";
 import Dosare from "./pages/Dosare";
 import CreeazaDosare from "./pages/CreeazaDosare";
+import { PaginaSofer } from "./pages/PaginaSofer";
+
 
 function App() {
   return (
@@ -19,6 +21,7 @@ function App() {
           <Route path="/Dashboard" element={<Dashboard />} />
           <Route path="/Dosare" element={<Dosare />} />
           <Route path="/CreeazaDosare" element={<CreeazaDosare />} />
+          <Route path="/PaginaSofer" element={<PaginaSofer />} />
         </Routes>
       </Router>
     </div>
