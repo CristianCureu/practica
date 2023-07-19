@@ -30,3 +30,7 @@ exports.loggedUserQuery = `
     from dbo."User" 
     where email = @__ctx
 `;
+exports.getUsersQuery = `
+select *
+from dbo."User" 
+`;

@@ -1,13 +1,15 @@
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../components/Button";
-import { useState} from "react";
+import { useState } from "react";
 import Input from "../components/Input";
-
+import { VariantType } from "../components/UseSnackbar";
+import EnqueueSnackBar from "../components/UseSnackbar";
 
 const LoginPage = () => {
   const navigate = useNavigate();
   const [userData, setUserData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
+  const enqueueSnackBar = EnqueueSnackBar();
 
   const onChange = (field, value) => {
     setUserData({ ...userData, [field]: value });
@@ -16,18 +18,24 @@ const LoginPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/loginUser`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userData),
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_BASE_URL}/loginUser`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userData),
+        }
+      );
       const responseText = await response.text();
       if (response.status === 200) {
         console.log("success");
-        alert("Login reusit... navigare pe pagina HOME");
-        navigate("/home");
+        enqueueSnackBar(
+          "Login reusit... navigare pe pagina HOME",
+          VariantType.SUCCESS
+        );
+        navigate("/");
       } else {
         setError(responseText);
       }
@@ -35,11 +43,6 @@ const LoginPage = () => {
       console.log(error);
     }
   };
-
-  // useEffect(() => {
-  //   console.log(userData);
-  // }, [userData]);
-
   return (
     <div className="flex w-full justify-center p-20">
       <form className="flex flex-col items-center justify-around border w-1/2 h-96 px-2">

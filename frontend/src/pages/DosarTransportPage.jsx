@@ -34,12 +34,15 @@ const DosarTransportPage = () => {
 
   const deleteDosar = async (id) => {
     try {
-      await fetch(`${process.env.REACT_APP_BASE_URL}/data/dosartransport?id=${id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      await fetch(
+        `${process.env.REACT_APP_BASE_URL}/data/dosartransport?id=${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       const updatedDosare = dosare.filter((dosar) => dosar.Id !== id);
       setDosare(updatedDosare);
@@ -78,6 +81,9 @@ const DosarTransportPage = () => {
           <table className="min-w-full bg-white border border-gray-300 rounded-lg shadow-lg">
             <thead>
               <tr className="bg-gray-200">
+              <th className="py-4 px-6 text-left text-gray-700 font-bold">
+                  Id
+                </th>
                 <th className="py-4 px-6 text-left text-gray-700 font-bold">
                   #
                 </th>
@@ -90,6 +96,7 @@ const DosarTransportPage = () => {
                 <th className="py-4 px-6 text-left text-gray-700 font-bold">
                   Sofer
                 </th>
+                
                 <th className="py-4 px-6 text-left text-gray-700 font-bold"></th>
               </tr>
             </thead>
@@ -99,8 +106,17 @@ const DosarTransportPage = () => {
                   key={dosar.Id}
                   className={index % 2 === 0 ? "bg-white" : "bg-gray-100"}
                 >
+                  <td>
+                    <div className="flex items-center">
+                      <div className="ml-4">
+                        <p className="text-sm font-medium text-gray-900">
+                          {dosar.Id}
+                        </p>
+                      </div>
+                    </div>
+                  </td>
                   <td className="whitespace-nowrap w-12">
-                    <Link to={`/facturi/${dosar.Id}`}>
+                    <Link to={`/scan/dosar/${dosar.Id}/scan-colet`}>
                       <img src={require("./../assets/scan-icon.png")} />
                     </Link>
                   </td>

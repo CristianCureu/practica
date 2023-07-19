@@ -9,3 +9,16 @@ export async function getColet(ctx: Koa.Context) {
   let { recordset } = await sql(query, { idDosar } as any);
   ctx.body = recordset;
 }
+
+
+export async function updateColet(ctx: Koa.Context) {
+  let { idColet } = ctx.request.body;
+  const query = `
+    UPDATE dbo.DosarTransport_Colete
+    SET ScanatIncarcare = GETDATE()
+    WHERE IdColet = @idColet;
+  `;  
+  let { recordset } = await sql(query, { idColet } as any);
+  ctx.body = recordset;
+
+}

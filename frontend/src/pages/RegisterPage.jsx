@@ -7,7 +7,7 @@ const RegisterPage = () => {
   const [password, setPassword] = useState("");
   const [passwordRepeat, setPasswordRepeat] = useState("");
   const [error, setError] = useState("");
- 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -32,7 +32,7 @@ const RegisterPage = () => {
       console.log("RegisterPage::handleSubmit::", error.message);
     }
   };
- 
+
   return (
     <div className="flex w-full  justify-center p-4">
       <form className="flex flex-col items-center justify-around border-gray-200 border-2 rounded-md w-3/4 lg:w-2/4 h-96">
@@ -74,5 +74,5 @@ const RegisterPage = () => {
     </div>
   );
 };
- 
-export default RegisterPage;
+
+export default RegisterPage;
