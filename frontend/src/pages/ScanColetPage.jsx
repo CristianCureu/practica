@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Scanner from "../components/Scanner";
 import { useNavigate, useParams } from "react-router-dom";
 import EnqueueSnackBar, { VariantType } from "../components/UseSnackbar";
+import { getColet } from "../../../backend/src/model/colet";
 
 const ScanColetPage = () => {
   const [scannedColeteCount, setScannedColeteCount] = useState(0);
@@ -64,7 +65,10 @@ const ScanColetPage = () => {
       }
       // start scan
     };
-    putColet();
+    putColet()
+      .then(() => getColet())
+      .catch(console.error)
+      .finally(() => console.log("Citire lista dosare - finally"));
   }, [codbare]);
 
   return (
