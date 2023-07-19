@@ -17,7 +17,6 @@ const UpdateDosarPage = () => {
     new Date().toISOString().slice(0, 16)
   );
   const [error, setError] = useState("");
-  const BASE_URL = "/api/data";
   const enqueueSnackbar = EnqueueSnackBar();
   const navigate = useNavigate();
 

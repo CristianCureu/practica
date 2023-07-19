@@ -3,8 +3,9 @@ import { Fragment } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Link, useLocation } from "react-router-dom";
 import Button from "./Button";
+
 const navigation = [
-  { name: "Home", href: "/home" },
+  { name: "Home", href: "/" },
   { name: "Dosar Transport", href: "/dosar-transport" },
   { name: "Users", href: "/users" },
   { name: "StatusPage", href: "/status" },
@@ -15,6 +16,7 @@ const navigation = [
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
+
 export default function Navbar() {
   const location = useLocation();
 

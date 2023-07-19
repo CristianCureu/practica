@@ -37,6 +37,10 @@ const ScanDosarPage = () => {
     validateDosar();
   }, []);
 
+  const handleSubmit = () => {
+    alert(`User data: ${JSON.stringify(user)}`);
+    localStorage.setItem("userContext", JSON.stringify(user));
+  };
   return (
     <div>
       <h2>{dosar.Nume}</h2>

@@ -4,7 +4,11 @@ import { useNavigate, useParams } from "react-router-dom";
 import EnqueueSnackBar, { VariantType } from "../components/UseSnackbar";
 
 const ScanColetPage = () => {
+  const [scannedColeteCount, setScannedColeteCount] = useState(0);
+
   const [colete, setColete] = useState([]);
+  const [codbare, setCodbare] = useState("");
+
   const { idDosar } = useParams();
   const enqueueSnackBar = EnqueueSnackBar();
   const navigate = useNavigate();
@@ -23,15 +27,49 @@ const ScanColetPage = () => {
         return navigate("/");
       }
 
-      console.log(responseJson);
+      console.log("RESPONSE:", responseJson);
+
       setColete(responseJson);
+      console.log("COLETE:", colete);
     };
     getColetData();
   }, []);
 
+  useEffect(() => {
+    alert("working");
+    const scanned = colete.filter((e) => e.ScanatIncarcare).length;
+    setScannedColeteCount(scanned);
+  }, [colete]);
+
+  useEffect(() => {
+    const putColet = async () => {
+      try {
+        const response = await fetch(
+          `${process.env.REACT_APP_BASE_URL}/data/colet?idColet=${codbare}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ codbare }),
+          }
+        );
+        console.log("RESPONSE FROM PUT:", response);
+
+        // Update the colete state with the latest data
+        //    const coletData = await response.json();
+        //      setColete(coletData);
+      } catch (error) {
+        return console.log("ERROR: ", error.message);
+      }
+      // start scan
+    };
+    putColet();
+  }, [codbare]);
+
   return (
     <div className="w-full flex items-center flex-col p-6">
-      <Scanner />
+      <Scanner handleResult={setCodbare}></Scanner>
       <div className="mt-10 flex items-center">
         Numar colete scanate:{" "}
         <p className="mx-2 text-xl">
