@@ -3,7 +3,7 @@ import { useZxing } from "react-zxing";
 import Button from "./Button";
 import beep from "../assets/beep.mp3";
 
-const Scanner = () => {
+const Scanner = ({handler}) => {
   const [audio] = useState(new Audio(beep));
   const [result, setResult] = useState("");
   const [results, setResults] = useState([]);
@@ -15,6 +15,7 @@ const Scanner = () => {
     timeBetweenDecodingAttempts: 300,
     onResult(result) {
       setResult(result.getText());
+      handler(result)
       setResults((prevState) => [...prevState, result]);
       audio.play();
     },

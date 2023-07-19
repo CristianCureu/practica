@@ -1,6 +1,6 @@
 // import { stringify } from "json5";
 import { useEffect, useState } from "react";
-import './curbe.css'  
+
 const Users = () => {
   const [users, setUsers] = useState([]);
   useEffect(() => {

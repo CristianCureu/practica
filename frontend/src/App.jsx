@@ -12,6 +12,7 @@ import FacturiDosarPage from "./pages/FacturiDosarPage"
 import UpdateStatusPage from "./pages/UpdateStatusPage"
 import DosarPage from "./pages/ScanDosarPage"
 import UsersPage from "./pages/UsersPage"
+import ScanColetPage from "./pages/ColetePage";
 import { createContext, useEffect, useState } from "react";
 // structura pentru userContext
 let userContext = JSON.stringify({
@@ -51,6 +52,11 @@ function App() {
             <Route path="/createdosar" element={<CreateDosarPage />} />
 
             <Route path="/scan/dosar/:idDosar" element={<DosarPage />} />
+            <Route
+              path="/scan/dosar/:idDosar/scan-colet"
+              element={<ScanColetPage />}
+            />
+            
 
           </Routes>
         </Router>

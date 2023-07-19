@@ -13,9 +13,18 @@ import {
   logoutUser,
   validateToken,
 } from "./user";
-import { getStatus, putStatus, deleteStatus, updateStatus  } from "../model/status";
+import { deleteStatus, getStatus, updateStatus } from "../model/status";
+import { putStatus } from "../model/status";
+import {
+  deletedosar,
+  getDosar,
+  putDosar,
+  updateDosar,
+} from "../model/dosartransport";
+
 import { getFacturiDosar, putFacturiDosar } from "../model/facturi";
-import { getDosar, putDosar,updateDosar,deletedosar } from "../model/dosartransport";
+import { getColet, putColet } from "../model/colet";
+
 const bodyParser = koaBody({
   jsonLimit: 50 * 1024 * 1025,
   formLimit: 50 * 1024 * 1025,
@@ -39,34 +48,40 @@ const multipartBody = koaBody({
 const router = new Router({ prefix: "/api" });
 
 router
-.get("/data/status", getStatus)
-.put("/data/status", bodyParser, putStatus)
-.post("/data/status", bodyParser, updateStatus)
-.delete("/data/status", bodyParser, deleteStatus)
+  .get("/data/status", getStatus)
+  .put("/data/status", bodyParser, putStatus)
+  .post("/data/status", bodyParser, updateStatus)
+  .delete("/data/status", bodyParser, deleteStatus)
 
-.get("/logoutUser", logoutUser)
-.post("/loginUser", bodyParser, loginUser)
+  .get("/data/facturidosar", getFacturiDosar)
+  .put("/data/facturidosar", bodyParser, putFacturiDosar)
 
-.get("/data/facturidosar", getFacturiDosar)
-.put("/data/facturidosar", bodyParser, putFacturiDosar)
+  .get("/data/dosartransport", getDosar)
+  .put("/data/dosartransport", bodyParser, putDosar)
+  .post("/data/dosartransport", bodyParser, updateDosar)
+  .delete("/data/dosartransport", bodyParser, deletedosar)
 
-.get("/data/dosartransport", getDosar)
-.put("/data/dosartransport", bodyParser, putDosar)
-.post("/data/dosartransport", bodyParser, updateDosar)
-.delete("/data/dosartransport",bodyParser,deletedosar)
 
-.post("/registerUser", bodyParser, registerUser)
-.post("/validateToken", bodyParser, validateToken)
-.post("/passwordRecover", bodyParser, passwordRecover)
-.post("/passwordReset", bodyParser, passwordReset)
-.delete("/entity", decode, deleteEntity)
-.post("/entity", decode, bodyParser, saveEntity)
-.post("/query", bodyParser, query)
-.delete("/upload", decode, deleteUploadedFile)
-.post("/upload/:idWork", decode, multipartBody, upload)
-.post("/upload", decode, multipartBody, upload)
-.get("/preview", decode, preview)
-.get("/download", decode, download);
+  .get("/data/colet", getColet)
+  .put("/data/colet", bodyParser, putColet)
+
+
+  .post("/loginUser", bodyParser, loginUser)
+  .get("/logoutUser", logoutUser)
+  .post("/registerUser", bodyParser, registerUser)
+  .post("/validateToken", bodyParser, validateToken)
+  .post("/passwordRecover", bodyParser, passwordRecover)
+  .post("/passwordReset", bodyParser, passwordReset)
+  .delete("/entity", decode, deleteEntity)
+  .post("/entity", decode, bodyParser, saveEntity)
+  .post("/query", bodyParser, query)
+  .delete("/upload", decode, deleteUploadedFile)
+  .post("/upload/:idWork", decode, multipartBody, upload)
+  .post("/upload", decode, multipartBody, upload)
+  .get("/preview", decode, preview)
+  .get("/download", decode, download);
+
+
 
 let index = (ctx: Koa.Context) => {
   ctx.type = "html";
