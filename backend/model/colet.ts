@@ -26,7 +26,6 @@ export async function putColet(ctx: Koa.Context) {
     SET ScanatIncarcare=GETDATE()
     where IdColet=@idColet ` 
   */
-  let result=await sql(query, {idColet,idDosar} as any);
-  ctx.body = result.recordset;
- 
+  await sql(query, {idColet,idDosar} as any);
+
 }
