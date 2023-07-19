@@ -57,3 +57,9 @@ export async function updateStatus(ctx) {
     await sql(query, { ...ctx.request.body, id });
     await getStatus(ctx);
 }
+
+
+
+
+
+
