@@ -16,6 +16,8 @@ import ScanDosarPage from "./pages/ScanDosarPage";
 
 import { createContext, useEffect, useState } from "react";
 import ScanColetPage from "./pages/ScanColetPage";
+import { SnackbarProvider } from "notistack";
+
 // structura pentru userContext
 let userContext = JSON.stringify({
   loggedId: false,
@@ -38,29 +40,31 @@ function App() {
   return (
     <div className="App">
       <UserContext.Provider value={{ user, setUser }}>
-        <Router>
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<DosarTransportPage />} />
-            <Route path="/home" element={<HomePage />} />
-            <Route path="/dosar-transport" element={<DosarTransportPage />} />
-            <Route path="/createdosar" element={<CreateDosarPage />} />
-            <Route path="/updatedosar/:id" element={<UpdateDosarPage />} />
-            <Route path="/detaliidosar/:id" element={<DetailsDosarPage />} />
-            <Route path="/facturi/:idDosar" element={<FacturiDosarPage />} />
-            <Route path="/scan/dosar/:idDosar" element={<ScanDosarPage />} />
-            <Route
+        <SnackbarProvider>
+          <Router>
+            <Navbar />
+            <Routes>
+              <Route path="/" element={<DosarTransportPage />} />
+              <Route path="/home" element={<HomePage />} />
+              <Route path="/dosar-transport" element={<DosarTransportPage />} />
+              <Route path="/createdosar" element={<CreateDosarPage />} />
+              <Route path="/updatedosar/:id" element={<UpdateDosarPage />} />
+              <Route path="/detaliidosar/:id" element={<DetailsDosarPage />} />
+              <Route path="/facturi/:idDosar" element={<FacturiDosarPage />} />
+              <Route path="/scan/dosar/:idDosar" element={<ScanDosarPage />} />
+              <Route
               path="/scan/dosar/:idDosar/scan-colet"
               element={<ScanColetPage />}
             />
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/users" element={<Users />} />
-            <Route path="/createstatus" element={<CreateStatusPage />} />
-            <Route path="/status" element={<StatusPage />} />
-            <Route path="/updatestatus/:id" element={<UpdateStatusPage />} />
-          </Routes>
-        </Router>
+              <Route path="/register" element={<RegisterPage />} />
+              <Route path="/users" element={<Users />} />
+              <Route path="/createstatus" element={<CreateStatusPage />} />
+              <Route path="/status" element={<StatusPage />} />
+              <Route path="/updatestatus/:id" element={<UpdateStatusPage />} />
+            </Routes>
+          </Router>
+        </SnackbarProvider>
       </UserContext.Provider>
     </div>
   );
