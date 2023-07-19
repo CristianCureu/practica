@@ -13,31 +13,29 @@ const ScanColetPage = () => {
   const { idDosar } = useParams();
   const enqueueSnackBar = EnqueueSnackBar();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const getColetData = async () => {
-      const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}/data/colet?idDosar=${idDosar}`
+  const getColetData = async () => {
+    const response = await fetch(
+      `${process.env.REACT_APP_BASE_URL}/data/colet?idDosar=${idDosar}`
+    );
+    const [responseJson] = await response.json();
+    if (!responseJson) {
+      enqueueSnackBar(
+        "Dosarul nu s-a gasit in Baza de Date !",
+        VariantType.ERROR
       );
-      const [responseJson] = await response.json();
-      if (!responseJson) {
-        enqueueSnackBar(
-          "Dosarul nu s-a gasit in Baza de Date !",
-          VariantType.ERROR
-        );
-        return navigate("/");
-      }
+      return navigate("/");
+    }
 
-      console.log("RESPONSE:", responseJson);
+    console.log("RESPONSE:", responseJson);
 
-      setColete(responseJson);
-      console.log("COLETE:", colete);
-    };
+    setColete(responseJson);
+    console.log("COLETE:", colete);
+  };
+  useEffect(() => {
     getColetData();
   }, []);
 
   useEffect(() => {
-    alert("working");
     const scanned = colete.filter((e) => e.ScanatIncarcare).length;
     setScannedColeteCount(scanned);
   }, [colete]);
@@ -52,7 +50,7 @@ const ScanColetPage = () => {
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({ codbare }),
+            body: JSON.stringify({ idColet: codbare }),
           }
         );
         console.log("RESPONSE FROM PUT:", response);
@@ -66,9 +64,9 @@ const ScanColetPage = () => {
       // start scan
     };
     putColet()
-      .then(() => getColet())
+      .then(() => getColetData())
       .catch(console.error)
-      .finally(() => console.log("Citire lista dosare - finally"));
+      .finally(() => console.log("Citire lista dosare - finnaly"));
   }, [codbare]);
 
   return (
@@ -76,10 +74,8 @@ const ScanColetPage = () => {
       <Scanner handleResult={setCodbare}></Scanner>
       <div className="mt-10 flex items-center">
         Numar colete scanate:{" "}
-        <p className="mx-2 text-xl">
-          {colete.filter((e) => e.ScanatIncarcare).length}
-        </p>{" "}
-        din <p className="mx-2 text-xl">{colete.length}</p>
+        <p className="mx-2 text-xl">{scannedColeteCount}</p> din{" "}
+        <p className="mx-2 text-xl">{colete.length}</p>
       </div>
     </div>
   );
