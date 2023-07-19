@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../components/Button";
-import { useState} from "react";
+import { useState,useEffect} from "react";
 import Input from "../components/Input";
 
 
@@ -8,9 +8,7 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const [userData, setUserData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
-  useEffect(() => {
-    sql.query('test');
-  }, []);
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -43,7 +41,7 @@ const LoginPage = () => {
           required
           autoComplete="off"
           onChange={(e) => {
-            setEmail(e.target.value);
+            setUserData({...setUserData, email: e.target.value });
           }}
         />
         <Input
@@ -51,11 +49,10 @@ const LoginPage = () => {
           placeholder="Password"
           name="password"
           type="password"
-          placeholder="password"
           required
           autoComplete="off"
           onChange={(e) => {
-            setPassword(e.target.value);
+            setUserData({...setUserData, password: e.target.value });
           }}
         />
         {/* <Input name ="salut" type="text" placeholder={"Adauga"}/> */}
