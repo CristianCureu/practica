@@ -49,12 +49,15 @@ const ScanDosarPage = () => {
         </div>
       ) : user.name && !editMode ? (
         <div>
-          <p>Datele tale personale sun corecte ?</p>
+          <p>Datele tale personale sunt corecte ?</p>
           <p>{user.name}</p>
           <p>{user.auto}</p>
           <Button
             text="Confirm"
-            onClick={() => setDatePersonaleConfirmate(true)}
+            onClick={() => {
+              setDatePersonaleConfirmate(true);
+              navigate("/dosar-transport")}
+            }
           />
           <Button text="Modific" onClick={() => setEditMode(true)} />
         </div>
