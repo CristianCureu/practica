@@ -12,10 +12,21 @@ export async function getColet(ctx: Koa.Context) {
 
 export async function putColet(ctx: Koa.Context) {
   let { idColet } = ctx.request.query;
-  let query = `UPDATE DosarTransport_Colete 
-   SET ScanatIncarcare=GETDATE()
-   where IdColet=@idColet`
-  await sql(query, { idColet} as any);
-  ctx.body = "ok";
+  let { idDosar } = ctx.request.query;
+  let query = `UPDATE c
+  SET ScanatIncarcare = GETDATE()
+  FROM dbo.DosarTransport AS d
+  JOIN dbo.DosarTransport_Facturi AS f ON d.Id = f.IdDosarTransport AND d.Id = @idDosar
+  JOIN dbo.DosarTransport_Colete AS c ON f.IdFactura = c.IdFactura
+  WHERE c.IdColet = @idColet;`
+
+  /* let queryFnct= `UPDATE (select c.* from dbo.DosarTransport as d 
+    join dbo.DosarTransport_Facturi as f on d.Id = f.IdDosarTransport and d.Id = @idDosar
+    join dbo.DosarTransport_Colete as c on f.IdFactura = c.IdFactura)
+    SET ScanatIncarcare=GETDATE()
+    where IdColet=@idColet ` 
+  */
+  let result=await sql(query, {idColet,idDosar} as any);
+  ctx.body = result.recordset;
  
 }

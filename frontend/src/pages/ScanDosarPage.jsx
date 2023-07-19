@@ -42,7 +42,10 @@ const ScanDosarPage = () => {
           <Button
              bgColor="bg-gradient-to-l from-red-400 to-blue-500"  
             text="Incepe scanare colete"
-            onClick={() => setUser({ ...user })}
+            onClick={() => {
+              setUser({ ...user })
+              navigate(`scan-colet`);
+            }}
           />
         </div>
       ) : user.name && !editMode ? (
@@ -50,8 +53,14 @@ const ScanDosarPage = () => {
           <p>Datele tale personale sun corecte ?</p>
           <p>{user.name}</p>
           <p>{user.auto}</p>
-          <Button     bgColor="bg-gradient-to-l from-red-400 to-blue-500"   text="Confirm" onClick={() => setDatePersonaleConfirmate(true)} />
-          <Button     bgColor="bg-gradient-to-l from-red-400 to-blue-500"   text="Modific" onClick={() => setEditMode(true)} />
+          <Button     
+          bgColor="bg-gradient-to-l from-red-400 to-blue-500"   
+          text="Confirm" 
+          onClick={() => setDatePersonaleConfirmate(true)} />
+          <Button
+          bgColor="bg-gradient-to-l from-red-400 to-blue-500"   
+          text="Modific"
+          onClick={() => setEditMode(true)} />
         </div>
       ) : (
         <form className="flex flex-col items-center justify-around border-gray-200 border-2 rounded-md w-3/4 lg:w-2/4 h-96">

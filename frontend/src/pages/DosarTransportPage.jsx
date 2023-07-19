@@ -98,7 +98,7 @@ const DosarTransportPage = () => {
                   className={index % 2 === 0 ? "bg-white" : "bg-gray-100"}
                 >
                   <td className="whitespace-nowrap w-12">
-                    <Link to={`/facturi/${dosar.Id}`}>
+                    <Link to={`/scan/dosar/${dosar.Id}`}>
                       <img src={require("./../assets/scan-icon.png")} />
                     </Link>
                   </td>
