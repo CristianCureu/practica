@@ -4,7 +4,9 @@ import { useParams } from "react-router-dom";
 
 const ScanColetPage = () => {
   const [ colete, setColete] = useState([]);
+  const [ idColet, setIdColet] = useState("");
   const { idDosar } = useParams();
+
 
   const getColetData = async () => {
     try {
@@ -25,10 +27,10 @@ const ScanColetPage = () => {
     getColetData();
   }, []);
 
-  const handler = async (id) => {
+  const updateColetStatus = async () => {
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}/data/colet?idColet=${id}&idDosar=${idDosar}`, {
+        `${process.env.REACT_APP_BASE_URL}/data/colet?idColet=${idColet}&idDosar=${idDosar}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -37,15 +39,23 @@ const ScanColetPage = () => {
       );
       const responseJson = await response.json();
       alert(responseJson);
-  
+       
     } catch (error) {
       console.log(error);
     }
   };
 
+  useEffect(() => {
+    //alert(idColet)
+    updateColetStatus().then(
+      getColetData()
+    )
+  }, [idColet]);
+
+
   return (
     <div className="w-full flex items-center flex-col p-6">
-      <Scanner handler={handler}/>
+      <Scanner  handlerResult={setIdColet}/>
       <div className="mt-10 flex items-center">
         Numar colete scanate: <p className="mx-2 text-xl">{colete.filter(e => e.ScanatIncarcare).length}</p> din{" "}
         <p className="mx-2 text-xl">{colete.length}</p>

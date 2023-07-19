@@ -27,5 +27,5 @@ export async function putColet(ctx: Koa.Context) {
     where IdColet=@idColet ` 
   */
   await sql(query, {idColet,idDosar} as any);
-
+  ctx.body="ok?"
 }
