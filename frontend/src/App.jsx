@@ -30,6 +30,13 @@ let userContext = JSON.stringify({
 export const UserContext = createContext(null);
 
 function App() {
+  const [user, setUser] = useState(
+    JSON.parse(localStorage.getItem("userContext") || userContext)
+  );
+  useEffect(() => {
+    console.log("userState::App", user);
+    localStorage.setItem("userContext", JSON.stringify(user));
+  }, [user]);
   return (
     <div className="App">
       <UserContext.Provider value={{ user, setUser }}>
