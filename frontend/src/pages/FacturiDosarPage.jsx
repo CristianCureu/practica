@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 import Scanner from "../components/Scanner";
 
 const FacturiDosarPage = () => {
@@ -142,10 +140,7 @@ const FacturiDosarPage = () => {
                   className="accordion-header cursor-pointer transition flex space-x-5 px-5 items-center h-16"
                   onClick={() => handleAccordionClick(index)}
                 >
-                  <FontAwesomeIcon
-                    icon={activeIndex.includes(index) ? faMinus : faPlus}
-                    className="fas"
-                  />
+
                   <h4 className="text-xl ">
                     {item.SerieNumar} - {item.Valoare}
                   </h4>

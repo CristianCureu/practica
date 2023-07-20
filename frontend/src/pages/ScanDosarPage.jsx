@@ -2,7 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { UserContext } from "../App";
 import Button from "../components/Button";
-import EnqueueSnackBar, { VariantType } from "../components/UseSnackbar";
+import EnqueueSnackBar from "../components/UseSnackbar";
+import { VariantType } from "../components/UseSnackbar";
 
 const ScanDosarPage = () => {
   const { user, setUser } = useContext(UserContext);
@@ -11,7 +12,7 @@ const ScanDosarPage = () => {
   const [dosar, setDosar] = useState({});
   const [editMode, setEditMode] = useState(false);
   const [datePersonaleConfirmate, setDatePersonaleConfirmate] = useState(false);
-  const enqueueSnackBar = EnqueueSnackBar();
+  const enqueueSnackbar = EnqueueSnackBar();
 
   useEffect(() => {
     const validateDosar = async () => {
@@ -21,7 +22,7 @@ const ScanDosarPage = () => {
         );
         const [responseJson] = await response.json();
         if (!responseJson) {
-          enqueueSnackBar(
+          enqueueSnackbar(
             "Dosarul nu s-a gasit in Baza de Date !",
             VariantType.ERROR
           );

@@ -22,7 +22,7 @@ import {
   updateDosar,
 } from "./model/dosartransport";
 import { getFacturiDosar, putFacturiDosar } from "./model/facturi";
-import { getColet, updateColet } from "./model/colet";
+import { getColet } from "./model/colet";
 
 const bodyParser = koaBody({
   jsonLimit: 50 * 1024 * 1025,
@@ -57,7 +57,7 @@ router
 
   .get("/data/dosartransport", getDosar)
   .get("/data/colet", getColet)
-  .put("/data/colet", bodyParser, updateColet)
+
 
   .put("/data/dosartransport", bodyParser, putDosar)
   .post("/data/dosartransport", bodyParser, updateDosar)

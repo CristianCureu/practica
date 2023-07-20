@@ -75,8 +75,6 @@ const RegisterPage = () => {
   );
 };
 
-<<<<<<< HEAD
 export default RegisterPage;
-=======
-export default RegisterPage;
->>>>>>> b89b88226a926c5e98f02bc950e4ffa7a94ef53d
+
+
