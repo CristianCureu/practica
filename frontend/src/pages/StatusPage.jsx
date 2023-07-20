@@ -1,18 +1,28 @@
 // import { stringify } from "json5";
 import { useEffect, useState } from "react";
 import Button from "../components/Button";
+import Modal from "../components/modal/Modal";
+import ButtonDelete from "../components/ButtonDelete";
 
 const StatusPage = () => {
   const [statuses, setStatuses] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const clickHandler = () => setIsModalOpen(true);
+  const modalCloseHandler = () => setIsModalOpen(false);
+
   useEffect(() => {
     const getStatuses = async () => {
       try {
-        const statuses = await fetch(`${process.env.REACT_APP_BASE_URL}/data/status`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const statuses = await fetch(
+          `${process.env.REACT_APP_BASE_URL}/data/status`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
         let statusesJson = await statuses.json();
         statusesJson = statusesJson.map((s) => ({ ...s, editMode: false }));
         setStatuses(statusesJson);
@@ -179,7 +189,6 @@ const StatusPage = () => {
   };
 
   return (
-
     <div className="overflow-x-auto">
       <div className="h-screen bg-gradient-to-br from-green-50 to-indigo-100 grid place-items-center">
         <div className="w-full lg:w-5/6">
@@ -187,14 +196,18 @@ const StatusPage = () => {
             id="addStatusButton"
             onClick={() => addRow()}
             type="button"
-            className="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Adauga status nou
+            className="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+          >
+            Adauga status nou
           </button>
 
           <div className="bg-white shadow-md rounded my-6">
             <table className="min-w-max w-full table-auto">
               <thead>
                 <tr
-                  style={{ backgroundColor: "#F6F9FE" }} className="bg-gray-80 text-gray-600 uppercase text-sm leading-normal">
+                  style={{ backgroundColor: "#F6F9FE" }}
+                  className="bg-gray-80 text-gray-600 uppercase text-sm leading-normal"
+                >
                   <th className="py-3 px-6 text-left">Nume</th>
                   <th className="py-3 px-6 text-left">Tip Status</th>
                   <th className="py-3 px-6 text-center">Design</th>
@@ -326,7 +339,9 @@ const StatusPage = () => {
                         </div>
                         <div className="w-4 mr-2 transform hover:text-red-500 hover:scale-110">
                           <svg
-                            onClick={() => deleteRow(status.Id)}
+                            onClick={() => {
+                              clickHandler();
+                            }}
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
                             viewBox="0 0 24 24"
@@ -339,6 +354,29 @@ const StatusPage = () => {
                               d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
                             />
                           </svg>
+                          <Modal isOpen={isModalOpen} close={modalCloseHandler}>
+                            Esti sigur ca doresti sa stergi acest dosar?
+                            <div className="flex justify-center space-x-4 mt-4">
+                              <ButtonDelete
+                                onClick={() => {
+                                  console.log("E bine");
+                                  deleteRow(status.Id);
+                                  modalCloseHandler();
+                                }}
+                                text="Da"
+                                className="px-4 py-2 bg-red-500 text-white
+                          rounded hover:bg-red-600 focus:outline-none focus:ring
+                          focus:ring-red-300"
+                              />
+                              <Button
+                                onClick={() => modalCloseHandler()}
+                                text="Nu"
+                                className="px-4 py-2 bg-blue-500 text-white
+                          rounded hover:bg-blue-600 focus:outline-none focus:ring
+                          focus:ring-red-300"
+                              />
+                            </div>
+                          </Modal>
                         </div>
                       </div>
                     </td>
@@ -349,8 +387,7 @@ const StatusPage = () => {
           </div>
         </div>
       </div>
-    </div >
-
+    </div>
   );
 };
 
