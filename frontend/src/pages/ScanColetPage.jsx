@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import Scanner from "../components/Scanner";
-import { useNavigate, useParams } from "react-router-dom";
-import EnqueueSnackBar, { VariantType } from "../components/UseSnackbar";
-import { getColet } from "../../../backend/src/model/colet";
+import { useParams } from "react-router-dom";
 
 const ScanColetPage = () => {
   const [scannedColeteCount, setScannedColeteCount] = useState(0);
@@ -11,21 +9,11 @@ const ScanColetPage = () => {
   const [codbare, setCodbare] = useState("");
 
   const { idDosar } = useParams();
-  const enqueueSnackBar = EnqueueSnackBar();
-  const navigate = useNavigate();
   const getColetData = async () => {
     const response = await fetch(
       `${process.env.REACT_APP_BASE_URL}/data/colet?idDosar=${idDosar}`
     );
-    const [responseJson] = await response.json();
-    if (!responseJson) {
-      enqueueSnackBar(
-        "Dosarul nu s-a gasit in Baza de Date !",
-        VariantType.ERROR
-      );
-      return navigate("/");
-    }
-
+    const responseJson = await response.json();
     console.log("RESPONSE:", responseJson);
 
     setColete(responseJson);

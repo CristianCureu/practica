@@ -89,6 +89,7 @@ const UpdateDosarPage = () => {
         navigate("/dosar-transport");
       } else {
         const errorMessage = await response.text();
+        enqueueSnackbar("Nu mai incerca sa schimbi data!!!", VariantType.ERROR);
         setError(errorMessage);
       }
     } catch (error) {

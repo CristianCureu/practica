@@ -1,8 +1,8 @@
 import React, { ReactNode, useState } from "react";
 import "./Modal.css";
-import ReactDOM from "react-dom";
+import ReactDOM, { createPortal } from "react-dom";
 
-const MODAL_STYLES: React.CSSProperties = {
+const MODAL_STYLES = {
   position: "fixed",
   top: "50%",
   left: "50%",
@@ -12,7 +12,7 @@ const MODAL_STYLES: React.CSSProperties = {
   zIndex: 1000,
 };
 
-const OVERLAY_STYLE: React.CSSProperties = {
+const OVERLAY_STYLE = {
   width: "100vw",
   height: "100vh",
   position: "fixed",
@@ -23,30 +23,26 @@ const OVERLAY_STYLE: React.CSSProperties = {
   zIndex: 1000,
 };
 
-const Modal = (props: {
-  isOpen: boolean;
-  close: Function;
-  children: ReactNode;
-}): React.ReactPortal | null => {
-  if (props.isOpen) {
-    return ReactDOM.createPortal(
+const Modal = ({ isOpen, close, children }) => {
+  if (isOpen) {
+    return createPortal(
       <div>
         <div
           style={OVERLAY_STYLE}
           className="modal-backdrop"
-          onClick={() => props.close()}
+          onClick={() => close()}
         />
         <div style={MODAL_STYLES} className="modal-child">
           <div
             className="btn-square btn-close btn-grad"
-            onClick={() => props.close()}
+            onClick={() => close()}
           >
             <i style={{ position: "absolute" }} className="fas fa-times"></i>
           </div>
-          {props.children}
+          {children}
         </div>
       </div>,
-      document.getElementById("portal") as Element
+      document.body
     );
   } else {
     return null;

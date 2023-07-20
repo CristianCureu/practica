@@ -2,10 +2,16 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "../components/Button";
 import ButtonDelete from "../components/ButtonDelete";
+import BasicModal from "../components/modal/Modal";
+import Modal from "../components/modal/Modal";
 
 const DosarTransportPage = () => {
   const [dosare, setDosare] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const clickHandler = () => setIsModalOpen(true);
+  const modalCloseHandler = () => setIsModalOpen(false);
 
   useEffect(() => {
     const getDosare = async () => {
@@ -81,7 +87,7 @@ const DosarTransportPage = () => {
           <table className="min-w-full bg-white border border-gray-300 rounded-lg shadow-lg">
             <thead>
               <tr className="bg-gray-200">
-              <th className="py-4 px-6 text-left text-gray-700 font-bold">
+                <th className="py-4 px-6 text-left text-gray-700 font-bold">
                   Id
                 </th>
                 <th className="py-4 px-6 text-left text-gray-700 font-bold">
@@ -96,7 +102,7 @@ const DosarTransportPage = () => {
                 <th className="py-4 px-6 text-left text-gray-700 font-bold">
                   Sofer
                 </th>
-                
+
                 <th className="py-4 px-6 text-left text-gray-700 font-bold"></th>
               </tr>
             </thead>
@@ -128,10 +134,35 @@ const DosarTransportPage = () => {
                   <td className="py-4 px-6 whitespace-nowrap">
                     <div className="flex items-center gap-2">
                       <ButtonDelete
-                        onClick={() => deleteDosar(dosar.Id)}
+                        onClick={clickHandler}
                         text="Șterge"
-                        className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 focus:outline-none focus:ring focus:ring-red-300"
+                        className="px-4 py-2 bg-red-500 text-white
+                        rounded hover:bg-red-600 focus:outline-none focus:ring
+                        focus:ring-red-300"
                       />
+
+                      <Modal isOpen={isModalOpen} close={modalCloseHandler}>
+                        Esti sigur ca doresti sa stergi acest dosar?
+                        <div className="flex justify-center space-x-4 mt-4">
+                          <ButtonDelete
+                            onClick={() => {
+                              deleteDosar(dosar.Id);
+                              modalCloseHandler();
+                            }}
+                            text="Da"
+                            className="px-4 py-2 bg-red-500 text-white
+                          rounded hover:bg-red-600 focus:outline-none focus:ring
+                          focus:ring-red-300"
+                          />
+                          <Button
+                            onClick={() => modalCloseHandler()}
+                            text="Nu"
+                            className="px-4 py-2 bg-blue-500 text-white
+                          rounded hover:bg-blue-600 focus:outline-none focus:ring
+                          focus:ring-red-300"
+                          />
+                        </div>
+                      </Modal>
 
                       <Link
                         to={`/updatedosar/${dosar.Id}`}
