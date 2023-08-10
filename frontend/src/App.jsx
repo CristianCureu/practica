@@ -27,7 +27,7 @@ let userContext = JSON.stringify({
   auto: "",
 });
 
-export const UserContext = createContext(null);
+export const UserContext = createC  ontext(null);
 
 function App() {
   const [user, setUser] = useState(
